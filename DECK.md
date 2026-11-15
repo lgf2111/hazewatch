@@ -78,6 +78,6 @@ Image: wind view for South Sumatra with 11 Nov outlined (`desktop-wind`). [`focu
 ## Pre-export checklist
 
 - [ ] `/opt/homebrew/bin/python3 tools/build_deck.py` prints 7 slides and no banned-word error.
-- [ ] No `[PERSONAL LINE]` and no other placeholder anywhere in the deck or the PDF.
+- [ ] No placeholder text anywhere in the deck or the PDF (the build has one personal line, written out, not a token).
 - [ ] PDF is exactly 7 pages; look at every page for overflow (the build prints word counts, not heights).
 - [ ] Every number on a slide still matches `data/facts.json`.
