@@ -2,7 +2,7 @@
 
 **Whose fires become Singapore's smoke?** A burning calendar built from NASA FIRMS MODIS and VIIRS hot spots for six Sumatra and Kalimantan provinces, with the days when fire and wind lined up towards Singapore.
 
-Live: https://lgf2111.github.io/hazewatch/ · NASA Space Apps Challenge 2026, Singapore · Challenge: *Harmonization of MODIS and VIIRS Hot Spots*
+Live: https://hazewatch.leeguanfeng.com/ · NASA Space Apps Challenge 2026, Singapore · Challenge: *Harmonization of MODIS and VIIRS Hot Spots*
 
 ## What it does
 

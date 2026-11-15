@@ -6,7 +6,7 @@ Every number below is in `data/facts.json` (key given in brackets) from the snap
 
 Screenshots are real captures of the live app, in `docs/screenshots/`. Each shows the fetch time, the dataset name and the feed row counts in its header.
 
-Live app: https://leeguanfeng.com/hazewatch/ · Code and data: https://github.com/lgf2111/hazewatch
+Live app: https://hazewatch.leeguanfeng.com/ · Code and data: https://github.com/lgf2111/hazewatch
 
 ---
 
@@ -21,7 +21,7 @@ Live app: https://leeguanfeng.com/hazewatch/ · Code and data: https://github.co
 >
 > **28,523** NASA fire detections over South-East Asia, 8–15 November 2026, turned into one calendar for the six provinces that matter to one city.
 >
-> leeguanfeng.com/hazewatch
+> hazewatch.leeguanfeng.com
 >
 > NASA Space Apps Challenge 2026 · Singapore · Harmonization of MODIS and VIIRS Hot Spots
 
@@ -162,7 +162,7 @@ Live app: https://leeguanfeng.com/hazewatch/ · Code and data: https://github.co
 > 2. Track MODIS–VIIRS agreement province by province over a full season
 > 3. Test the alignment index against recorded haze days
 >
-> Open it now: **leeguanfeng.com/hazewatch** · Data: NASA FIRMS, GIBS, POWER.
+> Open it now: **hazewatch.leeguanfeng.com** · Data: NASA FIRMS, GIBS, POWER.
 
 **Screenshot:** `docs/screenshots/phone-calendar.png`, small, as "it works on your phone".
 

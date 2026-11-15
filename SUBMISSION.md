@@ -35,7 +35,7 @@ HazeWatch is a burning calendar for the provinces whose fires can become Singapo
 *34 characters · limit 200 · 1 words*
 
 ```text
-https://leeguanfeng.com/hazewatch/
+https://hazewatch.leeguanfeng.com/
 ```
 
 ## Final project link

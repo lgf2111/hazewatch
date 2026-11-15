@@ -45,7 +45,7 @@ assert F["modis_rows"] + F["noaa20_rows"] + F["noaa21_rows"] == F["total_rows"]
 TEAM = "Can See Or Not"
 MEMBER = "Lee Guan Feng"
 CHALLENGE = "Harmonization of MODIS and VIIRS Hot Spots"
-APP = "leeguanfeng.com/hazewatch"
+APP = "hazewatch.leeguanfeng.com"
 
 FIRMS = "NASA FIRMS MODIS C6.1&nbsp;+&nbsp;VIIRS C2 NRT active fire"
 

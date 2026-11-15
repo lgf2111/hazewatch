@@ -27,7 +27,7 @@ top, top_n = F["top_province"], n(F["top_province_cell_days"])
 al, pd = F["aligned_days_total"], F["province_days_total"]
 assert F["viirs_snpp_rows"] == 0
 
-APP = "https://leeguanfeng.com/hazewatch/"
+APP = "https://hazewatch.leeguanfeng.com/"
 REPO = "https://github.com/lgf2111/hazewatch"
 FIRMS = "https://firms.modaps.eosdis.nasa.gov/data/active_fire"
 
