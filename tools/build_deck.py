@@ -54,7 +54,7 @@ SRC = "NASA FIRMS MODIS&nbsp;+&nbsp;VIIRS, <span class=\"nw\">8\u201315 November
 PSI = "PSI: Singapore 24-hour reading at 16:00 on 15 Nov 2026, data.gov.sg."
 
 # colours are SENSOR_COL / HEAT in assets/app.js
-SENSOR = [("#ffd23f", "MODIS camera"), ("#ff4d2e", "VIIRS camera")]
+SENSOR = [("#ffd23f", "MODIS"), ("#ff4d2e", "VIIRS")]
 HEAT = ["#ece7db", "#fde2bd", "#f8b96e", "#ee8532", "#cf4d1a", "#8f2410"]
 BINS = ["0", "1\u20134", "5\u201314", "15\u201329", "30\u201359", "60+"]
 
@@ -115,10 +115,10 @@ slides.append(f"""
   <div class="col">
     <h2>The answer is on file. The record forgets.</h2>
     <p class="stat">{total}</p>
-    <p class="body">dots in four NASA files, from two cameras with two different rulers. This season can't be compared with last.</p>
+    <p class="body">dots in four NASA files, from two instruments with two different rulers. This season can't be compared with last.</p>
   </div>
   <figure>{shot("desktop-map-raw.png", 985, 440, 180, 120, 540)}
-    {key([(SENSOR[0][0], "MODIS camera"), (SENSOR[1][0], "VIIRS camera")])}
+    {key(SENSOR)}
     {cap("Raw dots, same fires. " + SRC)}</figure>
 </section>""")
 
@@ -128,7 +128,7 @@ slides.append(f"""
   <div class="top">
     <h2>Count burning squares, not dots.</h2>
     <p class="stat">{raw_ratio}\u00d7 \u2192 {cell_ratio}\u00d7</p>
-    <p class="body">Count each square once a day and the gap between the cameras shrinks. Only <b>{overlap}%</b> of MODIS squares are seen by VIIRS at all.</p>
+    <p class="body">Count each square once a day and the gap between the instruments shrinks. Only <b>{overlap}%</b> of MODIS squares are seen by VIIRS at all.</p>
   </div>
   <div class="pair">
     <figure>{shot("desktop-map-raw.png", *MAP, 520)}

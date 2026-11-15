@@ -98,8 +98,19 @@ table { border-collapse: collapse; width: 100%; }
 .wind .fire { font-weight: 700; font-size: 15px; }
 
 /* about */
-.about p { max-width: 62ch; margin-top: 12px; }
+.about > p { max-width: 62ch; margin-top: 12px; }
 .about .view-head + p { margin-top: 14px; }
+.about h3 { margin-top: 28px; }
+.about .note { max-width: 62ch; }
+.plain th, .plain td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; font-variant-numeric: tabular-nums; }
+.plain th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+.plain td.num, .plain th.num { text-align: right; padding-right: 14px; white-space: nowrap; }
+.plain td small { display: block; color: var(--muted); word-break: break-all; }
+.plain tr.empty td { background: var(--warn-bg); font-weight: 600; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.tiles div { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.tiles b { display: block; font-size: 24px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.tiles span { font-size: 12px; color: var(--muted); display: block; line-height: 1.3; }
 .oneweek { margin-top: 22px; font-size: 12.5px; color: var(--muted); }
 
 footer { max-width: 1120px; margin: 0 auto; padding: 14px 16px 30px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
@@ -122,5 +133,7 @@ footer { max-width: 1120px; margin: 0 auto; padding: 14px 16px 30px; border-top:
   .wind th.rl { width: 170px; font-size: 14px; } .wind th.rl small { font-size: 12px; }
   .wind th, .wind td { font-size: 15px; padding: 9px 2px; }
   .wind td small { font-size: 12px; }
+  .tiles b { font-size: 34px; } .tiles span { font-size: 13px; }
+  .tiles div { padding: 14px 16px; }
   footer { padding: 16px 28px 36px; }
 }

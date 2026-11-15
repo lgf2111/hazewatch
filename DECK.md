@@ -10,7 +10,7 @@ Live app: https://hazewatch.leeguanfeng.com/ · Code and data: https://github.co
 
 The first deck was a report: it opened on the data model (two sensors, two rulers, one schema) and only reached a person, a day and a decision in the middle. A judge had no reason to care about harmonisation before knowing what it is for, and a report can only earn Validity and Relevance. The deck now runs as a story with evidence as proof: the question (slide 1), why nobody can answer it (2), the one move that fixes it (3), what the product does (4), one real day it matters (5), what is real, missing and next (6), and an ask (7). Every number and every screenshot is the same as before; only the order, the framing and the ending changed.
 
-Plain-English rules: "camera" for sensor, "square" for grid cell, "day" for cell-day. Banned on slides (the build fails if one appears): schema, harmonise/harmonised/harmonisation, provenance, cell-day, FRP, nominal, confidence class, index, normalise, alignment, thermal anomaly. "Heuristic" is allowed, on purpose, on slides 5 and 6. Source names appear in small captions and the challenge name.
+Plain-English rules: "instrument" (or just MODIS / VIIRS) for sensor, never "camera" (MODIS flies on Terra and Aqua; VIIRS on S-NPP, NOAA-20, NOAA-21); "square" for grid cell, "day" for cell-day. Banned on slides (the build fails if one appears): schema, harmonise/harmonised/harmonisation, provenance, cell-day, FRP, nominal, confidence class, index, normalise, alignment, thermal anomaly. "Heuristic" is allowed, on purpose, on slides 5 and 6. Source names appear in small captions and the challenge name.
 
 ---
 
@@ -29,14 +29,14 @@ Image: squares map with Singapore marked (`desktop-map-cells`). Numbers: nearest
 ## 2 — Why nobody can answer it
 
 > ## The answer is on file. The record forgets.
-> **28,523** dots in four NASA files, from two cameras with two different rulers. This season can't be compared with last.
+> **28,523** dots in four NASA files, from two instruments with two different rulers. This season can't be compared with last.
 
-Image: raw dots, tight crop, camera colour key (`desktop-map-raw`). [`total_rows`]
+Image: raw dots, tight crop, MODIS / VIIRS colour key (`desktop-map-raw`). [`total_rows`]
 
 ## 3 — The turn
 
 > ## Count burning squares, not dots.
-> **13.4× → 8.2×** Count each square once a day and the gap between the cameras shrinks. Only 55.5% of MODIS squares are seen by VIIRS at all.
+> **13.4× → 8.2×** Count each square once a day and the gap between the instruments shrinks. Only 55.5% of MODIS squares are seen by VIIRS at all.
 
 Image: raw dots and squares side by side, same area. [`raw_ratio_viirs_to_modis_detections`, `cell_ratio_viirs_to_modis`, `modis_cells_also_seen_by_viirs_pct`]
 

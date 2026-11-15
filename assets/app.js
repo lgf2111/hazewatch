@@ -35,6 +35,7 @@
     renderHeader();
     renderCalendar();
     renderWind();
+    renderData();
     document.querySelectorAll(".tabs a").forEach((a) => a.addEventListener("click", (e) => {
       e.preventDefault(); show(a.dataset.view, true);
     }));
@@ -172,23 +173,47 @@
         n++; counts[sensor]++;
         L.circleMarker([p[0], p[1]], { renderer, radius: sensor === 0 ? 3.2 : 1.8, stroke: sensor === 0, color: "#3a2a00", weight: 0.6, fillColor: SENSOR_COL[sensor], fillOpacity: 0.9, interactive: false }).addTo(mapLayer);
       }));
-      $("map-legend").innerHTML = "<span><i class='dot' style='background:" + SENSOR_COL[0] + "'></i>MODIS camera (1 km)</span>" +
-        "<span><i class='dot' style='background:" + SENSOR_COL[1] + "'></i>VIIRS camera (375 m)</span>";
+      $("map-legend").innerHTML = "<span><i class='dot' style='background:" + SENSOR_COL[0] + "'></i>MODIS (1 km)</span>" +
+        "<span><i class='dot' style='background:" + SENSOR_COL[1] + "'></i>VIIRS (375 m)</span>";
     } else {
       S.cells.forEach((p) => {
         if (day >= 0 && p[2] !== day) return;
         n++; counts[p[3]]++;
         L.rectangle([[p[0], p[1]], [p[0] + c, p[1] + c]], { renderer, stroke: false, fillColor: CELL_COL[p[3]], fillOpacity: 0.85, interactive: false }).addTo(mapLayer);
       });
-      $("map-legend").innerHTML = ["MODIS camera only", "VIIRS camera only", "both cameras"].map((t, i) =>
+      $("map-legend").innerHTML = ["MODIS only", "VIIRS only", "both"].map((t, i) =>
         "<span><i style='background:" + CELL_COL[i] + ";border:1px solid rgba(0,0,0,.35)'></i>" + t + "</span>").join("");
     }
     mapLayer.addTo(map);
     const when = day < 0 ? dlabel(S.meta.window_start) + " – " + dlabel(S.meta.window_end) : dlabel(S.meta.dates[day]);
     $("map-lede").innerHTML = mapMode === "points"
-      ? "The same fires as raw dots. The sharper camera, VIIRS, draws <b>" + S.harmonisation.raw_ratio_viirs_to_modis_detections + "×</b> as many dots as MODIS, " + when + "."
+      ? "The same fires as raw dots. The sharper instrument, VIIRS, draws <b>" + S.harmonisation.raw_ratio_viirs_to_modis_detections + "×</b> as many dots as MODIS, " + when + "."
       : day < 0
-        ? "<b>" + fmt(S.cells_total.cells) + " squares NASA saw fire in</b> across South-East Asia, " + when + ". One square counts once a day, whichever camera saw it."
-        : "Squares NASA saw fire in on " + when + ". One square counts once a day, whichever camera saw it.";
+        ? "<b>" + fmt(S.cells_total.cells) + " squares NASA saw fire in</b> across South-East Asia, " + when + ". One square counts once a day, whichever instrument saw it."
+        : "Squares NASA saw fire in on " + when + ". One square counts once a day, whichever instrument saw it.";
+  }
+
+  /* ---------- about the data: the proof that both instruments share one scale and one layout ---------- */
+  function renderData() {
+    const h = S.harmonisation;
+    $("feeds").innerHTML = "<thead><tr><th>File</th><th class='num'>Rows</th><th class='num'>In the six provinces</th></tr></thead><tbody>" +
+      S.feeds.map((f) => { const st = S.feed_stats[f.id]; return "<tr class='" + (f.rows ? "" : "empty") + "'><td>" + esc(f.dataset) + "<small>" + esc(f.url) + "</small><small>HTTP " + f.http_status + " · " + fmt(f.bytes) + " bytes · fetched " + esc(f.fetched_utc) + "</small></td>" +
+        "<td class='num'>" + (f.rows ? fmt(f.rows) : "0 · empty") + "</td><td class='num'>" + fmt(st.rows_in_focus_provinces) + "</td></tr>"; }).join("") + "</tbody>";
+
+    const c = S.confidence, br = S.params.modis_confidence_breaks;
+    $("conf").innerHTML = "<thead><tr><th>Shared grade</th><th>MODIS value</th><th class='num'>MODIS rows</th><th>VIIRS value</th><th class='num'>VIIRS rows</th><th>Used</th></tr></thead><tbody>" +
+      ["low", "nominal", "high"].map((k) => "<tr><td>" + k + "</td><td>" + br[k] + " %</td><td class='num'>" + fmt(c.MODIS[k]) + "</td><td>" + k + "</td><td class='num'>" + fmt(c.VIIRS[k]) + "</td><td>" + (k === "low" ? "left out" : "yes") + "</td></tr>").join("") + "</tbody>";
+
+    const schema = [["latitude, longitude", "latitude, longitude", "latitude, longitude"], ["time (UTC)", "acq_date + acq_time", "acq_date + acq_time"],
+      ["satellite", "satellite (Terra / Aqua)", "satellite (S-NPP / NOAA-20 / NOAA-21)"], ["fire temperature", "brightness", "bright_ti4"], ["background temperature", "bright_t31", "bright_ti5"],
+      ["fire power", "frp", "frp"], ["pixel size", "scan × track (~1 km)", "scan × track (~375 m)"], ["grade", "confidence 0–100 → 3 grades", "confidence low / nominal / high"],
+      ["square and day", "0.1° square · local date at UTC+7", "0.1° square · local date at UTC+7"]];
+    $("schema").innerHTML = "<thead><tr><th>Shared column</th><th>MODIS C6.1 file</th><th>VIIRS C2 files</th></tr></thead><tbody>" +
+      schema.map((r) => "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>").join("") + "</tbody>";
+
+    $("tiles").innerHTML =
+      "<div><b>" + h.raw_ratio_viirs_to_modis_detections + "×</b><span>VIIRS dots for every MODIS dot, raw</span></div>" +
+      "<div><b>" + h.cell_ratio_viirs_to_modis + "×</b><span>VIIRS squares for every MODIS square, on the shared grid</span></div>" +
+      "<div><b>" + h.modis_cells_also_seen_by_viirs_pct + "%</b><span>of MODIS's burning squares also seen by VIIRS the same day</span></div>";
   }
 })();
