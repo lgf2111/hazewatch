@@ -33,8 +33,11 @@ FP = F["focus_provinces"]
 total = n(F["total_rows"])
 raw_ratio = f'{F["raw_ratio_viirs_to_modis_detections"]}'
 cell_ratio = f'{F["cell_ratio_viirs_to_modis"]}'
-overlap = f'{F["modis_cells_also_seen_by_viirs_pct"]}'
+overlap = f'{F["modis_cells_also_seen_by_viirs_pct"]}'  # quoted in DECK.md notes, not on a slide
 ss = FP["south-sumatra"]
+active_cells = n(F["active_cell_days"])
+top_cells = n(F["top_province_cell_days"])
+riau_cells = n(F["focus_provinces"]["riau"]["cell_days"])
 day = ss["by_date"]["2026-11-11"]  # Wednesday 11 November
 dmin = min(p["distance_to_singapore_km"] for p in FP.values())
 dmax = max(p["distance_to_singapore_km"] for p in FP.values())
@@ -99,9 +102,8 @@ slides.append(f"""
   <div class="row">
     <div class="col">
       <p class="brand">HazeWatch</p>
-      <h1>Can See Or Not?</h1>
-      <p class="body">Singapore's haze is imported. The six provinces we watch sit {n(dmin)} to {n(dmax)} km away.</p>
-      <p class="personal">[PERSONAL LINE]</p>
+      <h1>Where does the smoke come from?</h1>
+      <p class="body">I live here. When the sky goes grey, nobody can tell you where it came from &mdash; though the six provinces that matter sit {n(dmin)} to {n(dmax)} km away.</p>
       <p class="team">Team <b>\u201c{TEAM}\u201d</b> \u00b7 {MEMBER}<br>{CHALLENGE}</p>
     </div>
     <figure>{shot("desktop-map-cells.png", *MAP, 500)}
@@ -113,9 +115,9 @@ slides.append(f"""
 slides.append(f"""
 <section class="slide s2">
   <div class="col">
-    <h2>The answer is on file. The record forgets.</h2>
+    <h2>NASA already sees the fires. You still can't tell what they mean.</h2>
     <p class="stat">{total}</p>
-    <p class="body">dots in four NASA files, from two instruments with two different rulers. This season can't be compared with last.</p>
+    <p class="body">detections in one week, from two cameras that count differently. Add them up and you are counting cameras, not fires.</p>
   </div>
   <figure>{shot("desktop-map-raw.png", 985, 440, 180, 120, 540)}
     {key(SENSOR)}
@@ -126,9 +128,9 @@ slides.append(f"""
 slides.append(f"""
 <section class="slide s3">
   <div class="top">
-    <h2>Count burning squares, not dots.</h2>
-    <p class="stat">{raw_ratio}\u00d7 \u2192 {cell_ratio}\u00d7</p>
-    <p class="body">Count each square once a day and the gap between the instruments shrinks. Only <b>{overlap}%</b> of MODIS squares are seen by VIIRS at all.</p>
+    <h2>One fire. One square. One day.</h2>
+    <p class="stat">{active_cells}</p>
+    <p class="body">squares on fire this week. A square counts once a day if either camera saw fire in it, so both cameras answer the same question &mdash; and the gap between them falls from {raw_ratio}&times; to {cell_ratio}&times;.</p>
   </div>
   <div class="pair">
     <figure>{shot("desktop-map-raw.png", *MAP, 520)}
@@ -143,14 +145,11 @@ CAL = (184, 262, 1072, 428)
 slides.append(f"""
 <section class="slide s4">
   <h2>One page. Six provinces. Eight days.</h2>
-  <figure>{shot("desktop-calendar.png", *CAL, 800, marks=[("dot", 1, 362, 465), ("dot", 2, 806, 442), ("dot", 3, 690, 510)])}
+  <p class="body">{top_cells} squares in South Sumatra. {riau_cells}, in Riau &mdash; the closest province.</p>
+  <figure>{shot("desktop-calendar.png", *CAL, 800)}
     {key(list(zip(HEAT, BINS)) + [("#0f6b74", "wind pointing at us")])}
     {cap("Live app, burning calendar \u00b7 " + SRC)}</figure>
-  <ol class="calls">
-    <li>One row per province</li>
-    <li>Darker square, more fire that day</li>
-    <li>Teal bar: wind pointing at Singapore</li>
-  </ol>
+  <p class="small"><b>How to read it:</b> one row per province, with the week's total. Darker square, more fire that day. Teal bar, the wind pointing at Singapore.</p>
 </section>""")
 
 # 5 — the moment of use -------------------------------------------------------
@@ -159,9 +158,9 @@ slides.append(f"""
   <h2>One real day: Wednesday 11 November</h2>
   <div class="two">
     <div><p class="stat">{day["cells"]}</p>
-      <p class="body">squares burning in {ss["name"]}. Wind from {day["wind_from_deg"]}\u00b0: just inside the 60\u00b0 window toward Singapore.</p></div>
+      <p class="body">squares burning in {ss["name"]}. That day the wind was blowing our way &mdash; within 60\u00b0 of the line to us.</p></div>
     <div><p class="stat">{aligned} of {pdays}</p>
-      <p class="body">province-days lined up like this. A heuristic, not a forecast.</p></div>
+      <p class="body">province-days lined up like this. A rough guide, not a forecast.</p></div>
   </div>
   <figure>{shot("desktop-wind.png", 188, 285, 1064, 310, 860, marks=[("box", 693, 330, 805, 566)])}
     {cap("Live app, wind windows (" + ss["name"] + ") \u00b7 " + SRC + " Wind and rain: NASA POWER; \u2020 Open-Meteo.")}</figure>
@@ -172,11 +171,11 @@ slides.append(f"""
 <section class="slide s6">
   <h2>What's real. What's missing. What's next.</h2>
   <div class="three">
-    <div class="real"><h3>Real</h3><p class="body">One real week of NASA data.</p></div>
+    <div class="real"><h3>Real</h3><p class="body">One week of real NASA data. Every number here is in one file you can check.</p></div>
     <div class="missing"><h3>Missing</h3>
-      <ul class="body"><li>7-day window</li><li>No archive</li><li>S-NPP file empty</li><li>Heuristic, not a forecast</li></ul></div>
+      <ul class="body"><li>One week only, no years behind it</li><li>One of NASA's four files came back empty</li><li>A rough guide, not a forecast</li></ul></div>
     <div class="next"><h3>Next</h3>
-      <ol class="body"><li>12-month archive</li><li>Agreement by province</li><li>Test against Singapore's PSI record</li></ol></div>
+      <ol class="body"><li>Load the years of history</li><li>Compare camera by camera, province by province</li><li>Test it against Singapore's PSI record</li></ol></div>
   </div>
 </section>""")
 
@@ -223,11 +222,10 @@ h1,h2,h3,.body,.kicker,.team,.cap,.small{text-wrap:balance}
 /* 1 */
 .s1{flex-direction:column;align-items:stretch;justify-content:center;gap:16px}
 .s1 .row{display:flex;align-items:center;gap:44px}
-.s1 .col{flex-basis:600px;gap:14px}
-.s1 h1{font-size:100px}
-.s1 .brand{font-size:34px;font-weight:800;color:var(--fire);letter-spacing:-.5px}
-.s1 .body{font-size:32px}
-.personal{font-size:30px;padding:8px 16px;border:2px dashed var(--fire);border-radius:8px;color:var(--fire);font-weight:700;align-self:flex-start}
+.s1 .col{flex-basis:600px;gap:12px}
+.s1 h1{font-size:86px;letter-spacing:-2px}
+.s1 .brand{font-size:32px;font-weight:800;color:var(--fire);letter-spacing:-.5px}
+.s1 .body{font-size:29px}
 /* 2 */
 .s2 .col{flex-basis:600px}
 /* 3, 4, 5: text across the top, picture below */
@@ -242,12 +240,8 @@ h1,h2,h3,.body,.kicker,.team,.cap,.small{text-wrap:balance}
 .s5 .two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .s5 .stat{font-size:80px}
 .s5 .body{font-size:30px}
-.s4 .calls{list-style:none;counter-reset:c;display:flex;gap:28px;align-self:center;width:1000px}
-.s4 .calls li{counter-increment:c;font-size:28px;line-height:1.2;flex:1;display:flex;gap:12px;align-items:flex-start}
-.s4 .calls li::before{content:counter(c);flex:0 0 40px;height:40px;border-radius:50%;background:var(--fire);color:#fff;font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 0 0 1px var(--fire)}
 .s4 figure{position:relative}
 .crop{position:relative}
-.mark{position:absolute;width:32px;height:32px;margin:-16px 0 0 -16px;border-radius:50%;background:var(--fire);color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 0 0 1px var(--fire)}
 .box{position:absolute;border:4px solid var(--fire);border-radius:6px}
 /* 6 */
 .s6 .three{display:grid;grid-template-columns:1fr 1.2fr 1.4fr;gap:20px}
