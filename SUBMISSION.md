@@ -10,7 +10,7 @@ Each field below is plain ASCII text between the fences. The count is the exact 
 |---|---:|---:|---:|
 | Project name | 9 | 60 | 1 |
 | High-level summary (~120 words) | 658 | 1,000 | 114 |
-| Demo link | 36 | 200 | 1 |
+| Demo link | 34 | 200 | 1 |
 | Final project link | 36 | 200 | 1 |
 | Detailed description | 3,152 | 4,000 | 533 |
 | NASA data used | 1,144 | 1,500 | 93 |
@@ -32,10 +32,10 @@ HazeWatch is a burning calendar for the provinces whose fires can become Singapo
 ```
 
 ## Demo link
-*36 characters · limit 200 · 1 words*
+*34 characters · limit 200 · 1 words*
 
 ```text
-https://lgf2111.github.io/hazewatch/
+https://leeguanfeng.com/hazewatch/
 ```
 
 ## Final project link
