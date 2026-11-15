@@ -193,7 +193,7 @@ slides.append(f"""
 </section>""")
 
 # 4 — what it does ------------------------------------------------------------
-CAL = (184, 268, 1072, 456)  # table spans y 288..710 at 1440 wide; leave a margin, cut the new archive link above it
+CAL = (184, 282, 1072, 434)  # table spans y 288..710 at 1440 wide; start below the sensor select (ends 278)
 slides.append(f"""
 <section class="slide s4">
   <h2>The whole week on one page.</h2>
