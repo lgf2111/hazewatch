@@ -1,0 +1,5 @@
+#!/bin/sh
+# Strip AI agent credit trailers ("Co-Authored-By: Claude ...", "Generated with ...")
+# from commit messages. Installed per-repo via: git config core.hooksPath .githooks
+f="$1"
+python3 "$HOME/.hermes/scripts/strip-agent-credits.py" < "$f" > "$f.tmp" && mv "$f.tmp" "$f"
