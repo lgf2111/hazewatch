@@ -61,6 +61,19 @@ def shot(name, x, y, w, h, width):
     )
 
 
+# calendar colour key: bins and hex values are BINS / HEAT from assets/app.js
+HEAT = ["#ece7db", "#fde2bd", "#f8b96e", "#ee8532", "#cf4d1a", "#8f2410"]
+BINS = ["0", "1\u20134", "5\u201314", "15\u201329", "30\u201359", "60+"]
+
+
+def legend():
+    sw = "".join(f'<span><i style="background:{c}"></i>{b}</span>' for c, b in zip(HEAT, BINS))
+    return (
+        f'<p class="legend">{sw}<span><i class="bar"></i>wind aligned</span></p>'
+        '<p class="note">* Partial days: 7 \u00d7 24 h UTC spans eight local dates.</p>'
+    )
+
+
 def cap(text):
     return f'<p class="cap">{text}</p>'
 
@@ -122,9 +135,10 @@ slides.append(f"""
   <div class="col">
     <h2>Six provinces, one week</h2>
     <p class="stat"><b>{top_cells}</b></p>
-    <p class="body">burning cell-days in {top_name}, the most active. Six provinces: <b>{focus}</b> of <b>{active}</b>.</p>
+    <p class="body">burning cell-days in {top_name}, most active. All six: <b>{focus}</b> of <b>{active}</b>.</p>
   </div>
   <figure>{shot("desktop-calendar.png", 184, 315, 1072, 437, 690)}
+    {legend()}
     {cap(f"Live app, burning calendar · {FIRMS}, harmonised to 0.1° cell-days")}</figure>
 </section>""")
 
@@ -198,6 +212,11 @@ h1,h2,h3,.body,.kicker,.team,.cap{text-wrap:balance}
 .kicker{font-size:22px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute)}
 .team{font-size:22px;line-height:1.4;color:var(--mute)}
 .team b{color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:18px;color:var(--ink);align-items:center;margin-top:2px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:18px;height:18px;border-radius:3px}
+.legend i.bar{height:5px;width:22px;border-radius:2px;background:#0f6b74;box-shadow:0 0 0 1px #fff}
+.note{font-size:18px;line-height:1.3;color:var(--mute)}
 .cap{font-size:16px;line-height:1.3;color:var(--mute)}
 .feeds{list-style:none;font-size:32px;line-height:1.35;border-top:2px solid var(--line);padding-top:12px}
 .feeds b{font-variant-numeric:tabular-nums}
