@@ -78,13 +78,13 @@ TEAM = "Can See Or Not"
 MEMBER = "Lee Guan Feng"
 CHALLENGE = "Harmonization of MODIS and VIIRS Hot Spots"
 APP = "hazewatch.leeguanfeng.com"
-SRC = "NASA FIRMS MODIS&nbsp;+&nbsp;VIIRS, <span class=\"nw\">8\u201315 November 2026.</span>"
+SRC = "NASA FIRMS MODIS&nbsp;+&nbsp;VIIRS, <span class=\"nw\">8 to 15 November 2026.</span>"
 PSI = f"PSI: Singapore 24-hour reading at {psi_now['time']} on {long_date(dt.date.fromisoformat(psi_now['date']))}, data.gov.sg."
 
 # colours are SENSOR_COL / HEAT in assets/app.js
 SENSOR = [("#ffd23f", "MODIS"), ("#ff4d2e", "VIIRS")]
 HEAT = ["#ece7db", "#fde2bd", "#f8b96e", "#ee8532", "#cf4d1a", "#8f2410"]
-BINS = ["0", "1\u20134", "5\u201314", "15\u201329", "30\u201359", "60+"]
+BINS = ["0", "1-4", "5-14", "15-29", "30-59", "60+"]
 
 IMAGES = {}  # css class -> data URI, so each screenshot is inlined once however often it is cropped
 
@@ -182,7 +182,7 @@ slides.append(f"""
   <div class="top">
     <h2>One fire. One square. One day.</h2>
     <p class="stat">{active_cells}</p>
-    <p class="body">squares on fire this week. A square counts once a day if either camera saw fire in it, so both cameras answer the same question &mdash; and the gap between them falls from {raw_ratio}&times; to {cell_ratio}&times;.</p>
+    <p class="body">squares on fire this week. A square counts once a day if either camera saw fire in it, so both cameras answer the same question, and the gap between them falls from {raw_ratio}&times; to {cell_ratio}&times;.</p>
   </div>
   <div class="pair">
     <figure>{shot("desktop-map-raw.png", *MAP, 520)}
@@ -196,8 +196,8 @@ slides.append(f"""
 CAL = (184, 262, 1072, 428)
 slides.append(f"""
 <section class="slide s4">
-  <h2>One page. Six provinces. Eight days.</h2>
-  <p class="body">{top_cells} squares in South Sumatra. {riau_cells}, in Riau &mdash; the closest province.</p>
+  <h2>The whole week on one page.</h2>
+  <p class="body">{top_cells} squares in South Sumatra. {riau_cells} in Riau, the closest to Singapore.</p>
   <figure>{shot("desktop-calendar.png", *CAL, 800)}
     {key(list(zip(HEAT, BINS)) + [("#0f6b74", "wind pointing at us")])}
     {cap("Live app, burning calendar \u00b7 " + SRC)}</figure>
@@ -211,7 +211,7 @@ slides.append(f"""
   <h2>The fires peaked {WORD[lead_days]} days before the schools closed.</h2>
   {chart()}
   <p class="body">A build-up of fires, then smoke. But {int(second[-2:])} Sep burned almost as much and no school closed: fire counts alone don't explain smoke.</p>
-  <p class="cap">Burning squares a day across the six provinces, {d0.day}\u2013{d1.day} {d1:%B %Y}. NASA FIRMS archive, MODIS + VIIRS. 25 September: schools closed, PSI {CL['psi_24h_peak']}. A look back at one event, not a prediction.</p>
+  <p class="cap">Burning squares a day across the six provinces, {d0.day} to {d1.day} {d1:%B %Y}. NASA FIRMS archive, MODIS + VIIRS. 25 September: schools closed, PSI {CL['psi_24h_peak']}. A look back at one event, not a prediction.</p>
 </section>""")
 
 # 6 — honesty as strength -----------------------------------------------------
@@ -221,7 +221,7 @@ slides.append(f"""
   <div class="three">
     <div class="real"><h3>Real</h3><p class="body">One week of real NASA data, and one September from the archive. Every number is in a file you can check.</p></div>
     <div class="missing"><h3>Missing</h3>
-      <ul class="body"><li>Years of history: one week live, one month of 2015</li><li>One of NASA's four files is empty because the satellite ended &mdash; Suomi NPP stopped on {long_date(npp.date())}</li><li>A rough guide, not a forecast</li></ul></div>
+      <ul class="body"><li>Years of history: one week live, one month of 2015</li><li>One of NASA's four files is empty because the satellite ended. Suomi NPP stopped on {long_date(npp.date())}</li><li>A rough guide, not a forecast</li></ul></div>
     <div class="next"><h3>Next</h3>
       <ol class="body"><li>Load the years of history</li><li>Compare camera by camera, province by province</li><li>Test it against Singapore's PSI record</li></ol></div>
   </div>
@@ -233,7 +233,7 @@ slides.append(f"""
 <section class="slide s7">
   <h1>Can See Or Not?</h1>
   <p class="link">{APP}</p>
-  <p class="body">Today is calm \u2014 PSI {psi_now["low"]}\u2013{psi_now["high"]}. The record has to exist for the mornings it isn't.</p>
+  <p class="body">Today is calm. PSI {psi_now["low"]} to {psi_now["high"]}. The record has to exist for the mornings it isn't.</p>
   <p class="ask">Next: an agency pilot, or archive funding.</p>
   <p class="note">{PSI}</p>
   <p class="team">Team <b>\u201c{TEAM}\u201d</b> \u00b7 {MEMBER}<br>Singapore Local Event \u00b7 {CHALLENGE} \u00b7 Best Use of Data</p>

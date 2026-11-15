@@ -1,4 +1,4 @@
-/* HazeWatch — renders data/snapshot.json. No number is computed here that is not in the snapshot. */
+/* HazeWatch: renders data/snapshot.json. No number is computed here that is not in the snapshot. */
 (function () {
   "use strict";
   const $ = (id) => document.getElementById(id);
@@ -89,7 +89,7 @@
     $("cal").querySelectorAll("th.name[data-p]").forEach((th) => th.addEventListener("click", () => { prov = th.dataset.p; renderWind(); show("wind", true); }));
 
     const top = S.provinces.slice().sort((a, b) => b.total_cells - a.total_cells)[0];
-    $("cal-lede").innerHTML = "<b>" + fmt(top.total_cells) + " burning squares in " + esc(top.name) + " this week</b> — more than any other province. " +
+    $("cal-lede").innerHTML = "<b>" + fmt(top.total_cells) + " burning squares in " + esc(top.name) + " this week</b>, more than any other province. " +
       "Each column is a day; each square on fire counts once.";
     $("cal-legend").innerHTML = "<span>Burning squares a day</span>" + BINS.map((b, i) => "<span><i style='background:" + HEAT[i] + "'></i>" + b[2] + "</span>").join("") +
       "<span><i class='bar'></i>wind pointing at Singapore</span>";
