@@ -2,71 +2,73 @@
 
 Award category: **Best Use of Data**. Seven slides including the title; do not add an eighth.
 
-`docs/deck/deck.html` is built by `python3 tools/build_deck.py` from `data/facts.json` and the captures in `docs/screenshots/` (run `tools/screenshots.sh` against `python3 -m http.server 8765` first). Export: headless Chrome `--print-to-pdf` → `docs/deck/HazeWatch-deck.pdf`, exactly 7 pages. This file records the slide copy as built; the build script is the source of truth for every number.
-
-Plain-English rules: say "camera" for sensor, "square" for grid cell, "day" for cell-day, "pointing at us" for wind alignment. Banned on slides (the build fails if one appears): schema, harmonise/harmonised/harmonisation, provenance, cell-day, FRP, nominal, confidence class, heuristic, index, normalise, alignment, thermal anomaly. Source names (MODIS, VIIRS, NASA FIRMS) appear in small captions and in the challenge name only.
+`docs/deck/deck.html` is built by `python3 tools/build_deck.py` from `data/facts.json` and the captures in `docs/screenshots/` (run `tools/screenshots.sh` against `python3 -m http.server 8765` first). Export: headless Chrome `--print-to-pdf --no-pdf-header-footer` → `docs/deck/HazeWatch-deck.pdf`, exactly 7 pages. This file records the copy as built; the build script is the source of truth for every number.
 
 Live app: https://hazewatch.leeguanfeng.com/ · Code and data: https://github.com/lgf2111/hazewatch
 
+## Why the order changed (report → pitch)
+
+The first deck was a report: it opened on the data model (two sensors, two rulers, one schema) and only reached a person, a day and a decision in the middle. A judge had no reason to care about harmonisation before knowing what it is for, and a report can only earn Validity and Relevance. The deck now runs as a story with evidence as proof: the question (slide 1), why nobody can answer it (2), the one move that fixes it (3), what the product does (4), one real day it matters (5), what is real, missing and next (6), and an ask (7). Every number and every screenshot is the same as before; only the order, the framing and the ending changed.
+
+Plain-English rules: "camera" for sensor, "square" for grid cell, "day" for cell-day. Banned on slides (the build fails if one appears): schema, harmonise/harmonised/harmonisation, provenance, cell-day, FRP, nominal, confidence class, index, normalise, alignment, thermal anomaly. "Heuristic" is allowed, on purpose, on slides 5 and 6. Source names appear in small captions and the challenge name.
+
 ---
 
-## 1 — Title
+## 1 — The morning
 
 > NASA SPACE APPS CHALLENGE 2026 · SINGAPORE
-> # HazeWatch
-> ## Where does the smoke come from?
-> **28,523** fires NASA's satellites saw around us in one week. We turned them into one page.
+> **HazeWatch**
+> # Can See Or Not?
+> Singapore's haze is imported. The six provinces we watch sit 251 to 1,371 km away.
+> **[PERSONAL LINE]**  ← placeholder for the entrant's own words; replace before submitting
 >
 > Team "Can See Or Not" · Lee Guan Feng · Harmonization of MODIS and VIIRS Hot Spots
 
-Image: map, squares mode, all days (`desktop-map-cells`). Caption: NASA FIRMS MODIS + VIIRS, 8–15 November 2026. [`total_rows`]
+Image: squares map with Singapore marked (`desktop-map-cells`). Numbers: nearest and farthest `focus_provinces.*.distance_to_singapore_km`. No haze memory, date or PSI record is invented.
 
-## 2 — The problem
+## 2 — Why nobody can answer it
 
-> ## Two cameras. One fire. Two answers.
-> **13.4×** more dots from the sharper camera — for the same fires. Count the dots and you are measuring cameras, not fires.
+> ## The answer is on file. The record forgets.
+> **28,523** dots in four NASA files, from two cameras with two different rulers. This season can't be compared with last.
 
-Image: raw dots, cropped tight on the East Kalimantan cluster (`desktop-map-raw`), with a camera colour key. [`raw_ratio_viirs_to_modis_detections`]
+Image: raw dots, tight crop, camera colour key (`desktop-map-raw`). [`total_rows`]
 
-## 3 — What we built
+## 3 — The turn
 
-> ## One fire. One square. One day.
-> **9,647** squares on fire this week. A square counts once a day if either camera saw fire in it — so both cameras now answer in the same units.
+> ## Count burning squares, not dots.
+> **13.4× → 8.2×** Count each square once a day and the gap between the cameras shrinks. Only 55.5% of MODIS squares are seen by VIIRS at all.
 
-Image: raw dots and squares side by side, same area. [`active_cell_days`]
+Image: raw dots and squares side by side, same area. [`raw_ratio_viirs_to_modis_detections`, `cell_ratio_viirs_to_modis`, `modis_cells_also_seen_by_viirs_pct`]
 
-## 4 — The answer
+## 4 — What it does
 
-> ## This week, South Sumatra burned.
-> **78** squares on fire there on Wednesday alone. Six provinces, eight days: South Sumatra first, then South Kalimantan, further east.
+> ## One page. Six provinces. Eight days.
+> ① One row per province ② Darker square, more fire that day ③ Teal bar: wind pointing at Singapore
 
-Image: the burning calendar (`desktop-calendar`) with the colour key (0, 1–4, 5–14, 15–29, 30–59, 60+; the app's own hex values) and the teal "wind pointing at us" bar. [`focus_provinces.south-sumatra.by_date`, `focus_provinces.*.cell_days`]
+Image: the burning calendar (`desktop-calendar`) with three numbered markers drawn over the real capture and the app's own colour key.
 
-## 5 — The twist
+## 5 — The moment of use
 
-> ## The nearest fires were not aimed at us.
-> **0 of 8** days Riau pointed fire at Singapore — 8 burning squares, 251 km away. South Sumatra is 511 km away, had 275 squares, and pointed at us on 4 days.
+> ## One real day: Wednesday 11 November
+> **78** squares burning in South Sumatra. Wind from 116°: just inside the 60° window toward Singapore.
+> **20 of 48** province-days lined up like this. A heuristic, not a forecast.
 
-Image: wind view for Riau, all eight days (`desktop-wind-riau`). [`focus_provinces.riau`, `focus_provinces.south-sumatra`]
+Image: wind view for South Sumatra with 11 Nov outlined (`desktop-wind`). [`focus_provinces.south-sumatra.by_date.2026-11-11`, `aligned_days_total`, `province_days_total`]. Wind direction is where it blows *from*; 116° blows toward 296°, 59° away from Singapore's bearing of 355°, so the day only just counts. The slide says "just inside" for that reason.
 
-## 6 — Honest
+## 6 — What's real. What's missing. What's next.
 
-> ## One week. Not a forecast.
-> **Real:** 28,523 NASA detections, 8–15 November, every number in one file you can check.
-> **Missing:** The years of history behind it. And one of NASA's four files came back empty.
->
-> Surface wind at one point per province is not the wind that carries smoke. Nothing here predicts tomorrow.
+> **Real** One real week of NASA data.
+> **Missing** 7-day window · No archive · S-NPP file empty · Heuristic, not a forecast
+> **Next** 1. 12-month archive 2. Agreement by province 3. Test against Singapore's PSI record
 
-Image: the live page on a phone (`phone-wind`), small.
+## 7 — The ask
 
-## 7 — Close
-
-> 4 FILES IN · 1 CALENDAR OUT
-> # So. Whose fire is it?
-> Next time the sky goes grey, the answer is one page away.
->
+> # Can See Or Not?
 > **hazewatch.leeguanfeng.com**
+> Today is calm — PSI 33–35. The record has to exist for the mornings it isn't.
+> **Next: an agency pilot, or archive funding.**
 >
+> Small: PSI is Singapore's 24-hour reading at 16:00 on 15 Nov 2026 (data.gov.sg, keyless `/v1/environment/psi`; checked live when the deck was built). Used only as contrast.
 > Team "Can See Or Not" · Lee Guan Feng · Singapore Local Event · Harmonization of MODIS and VIIRS Hot Spots · Best Use of Data
 
 ---
@@ -74,5 +76,5 @@ Image: the live page on a phone (`phone-wind`), small.
 ## Pre-export checklist
 
 - [ ] `python3 tools/build_deck.py` prints 7 slides and no banned-word error.
-- [ ] Numbers match `data/facts.json` (the script reads them from it).
+- [ ] `[PERSONAL LINE]` appears once in the deck (slide 1) until the entrant replaces it.
 - [ ] PDF is exactly 7 pages; look at every page for overflow, clipped captions, orphan lines.
