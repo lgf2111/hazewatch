@@ -4,15 +4,15 @@
   const $ = (id) => document.getElementById(id);
   const fmt = (n) => Number(n).toLocaleString("en-SG");
   const params = new URLSearchParams(location.search);
-  const VIEWS = ["calendar", "map", "wind", "data"];
+  const VIEWS = ["calendar", "map", "wind", "2015", "data"];
   const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const BINS = [[0, 0, "0"], [1, 4, "1–4"], [5, 14, "5–14"], [15, 29, "15–29"], [30, 59, "30–59"], [60, Infinity, "60+"]];
+  const BINS = [[0, 0, "0"], [1, 4, "1 to 4"], [5, 14, "5 to 14"], [15, 29, "15 to 29"], [30, 59, "30 to 59"], [60, Infinity, "60+"]];
   const HEAT = ["#ece7db", "#fde2bd", "#f8b96e", "#ee8532", "#cf4d1a", "#8f2410"];
   const SENSOR_COL = ["#ffd23f", "#ff4d2e"];           // MODIS, VIIRS
   const CELL_COL = ["#ffd23f", "#ff4d2e", "#ffffff"];  // MODIS only, VIIRS only, both
-  let S, GEO, map, mapLayer, mapMode = params.get("mode") === "points" ? "points" : "cells";
+  let S, GEO, ARC = null, map, mapLayer, mapMode = params.get("mode") === "points" ? "points" : "cells";
   let view = VIEWS.includes(params.get("view")) ? params.get("view") : "calendar";
   let prov = params.get("p");
 
@@ -24,7 +24,7 @@
   Promise.all([
     fetch("data/snapshot.json").then((r) => r.json()),
     fetch("data/provinces.geojson").then((r) => r.json()),
-  ]).then(([s, g]) => { S = s; GEO = g; init(); }).catch((e) => {
+  ]).then(([s, g]) => { S = s; GEO = g; return loadArchive(); }).then(init).catch((e) => {
     $("stamp").textContent = "Could not load data/snapshot.json: " + e.message;
   });
 
@@ -36,7 +36,7 @@
     renderCalendar();
     renderWind();
     renderData();
-    document.querySelectorAll(".tabs a").forEach((a) => a.addEventListener("click", (e) => {
+    document.querySelectorAll("a[data-view]").forEach((a) => a.addEventListener("click", (e) => {
       e.preventDefault(); show(a.dataset.view, true);
     }));
     $("cal-sensor").addEventListener("change", renderCalendar);
@@ -49,6 +49,9 @@
     document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", a.dataset.view === v));
     if (push) history.pushState(null, "", "?view=" + v + (v === "wind" ? "&p=" + prov : ""));
     if (v === "map") renderMap();
+    if (v === "2015") renderArchive();
+    const on = document.querySelector(".tabs a.on");
+    if (on && on.scrollIntoView) on.scrollIntoView({ inline: "center", block: "nearest" });
   }
 
   /* ---------- header ---------- */
@@ -56,7 +59,7 @@
     const m = S.meta, d0 = new Date(m.window_start + "T00:00:00Z"), d1 = new Date(m.window_end + "T00:00:00Z");
     const sgt = m.fetched_sgt.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}:\d{2}) SGT$/);
     const fetched = sgt ? (+sgt[3]) + " " + MON[+sgt[2] - 1] + " " + sgt[1] + ", " + sgt[4] + " SGT" : m.fetched_sgt;
-    $("stamp").innerHTML = "NASA satellites · " + d0.getUTCDate() + "–" + d1.getUTCDate() + " " + MONTH[d1.getUTCMonth()] + " " + d1.getUTCFullYear() +
+    $("stamp").innerHTML = "NASA satellites · " + d0.getUTCDate() + " to " + d1.getUTCDate() + " " + MONTH[d1.getUTCMonth()] + " " + d1.getUTCFullYear() +
       " · fetched <b>" + esc(fetched) + "</b>";
   }
 
@@ -119,10 +122,10 @@
       "<span style='display:inline-block;vertical-align:middle'>" + arrow(p.bearing_deg, true) + "</span>";
     const head = "<thead><tr><th class='rl'></th>" + p.daily.map((d) => { const x = dparts(d.date); return "<th>" + x.dow + "<b>" + x.day + "</b></th>"; }).join("") + "</tr></thead>";
     const row = (label, sub, fn) => "<tr><th class='rl'>" + label + "<small>" + sub + "</small></th>" + p.daily.map(fn).join("") + "</tr>";
-    const na = "<td class='na'>–<small>no data</small></td>";
+    const na = "<td class='na'>n/a<small>no data</small></td>";
     $("wind").innerHTML = head + "<tbody>" +
       row("Fire", "burning squares", (d) => "<td class='" + (d.aligned ? "al" : "") + "'><span class='fire'>" + d.cells + "</span></td>") +
-      row("Wind", "blowing towards · 0–1 how directly at us", (d) => d.weather_source === null ? na :
+      row("Wind", "blowing towards · 0 to 1 how directly at us", (d) => d.weather_source === null ? na :
         "<td class='" + (d.aligned ? "al" : "") + "'>" + arrow(d.wind_toward_deg, d.wind_alignment >= S.params.aligned_min_alignment) + d.wind_alignment.toFixed(2) +
         "<small>" + d.wind_ms + " m/s" + (d.weather_source === "Open-Meteo" ? "†" : "") + "</small></td>") +
       row("Dry spell", "days in a row under " + S.params.dry_day_mm + " mm of rain", (d) => d.weather_source === null ? na :
@@ -185,7 +188,7 @@
         "<span><i style='background:" + CELL_COL[i] + ";border:1px solid rgba(0,0,0,.35)'></i>" + t + "</span>").join("");
     }
     mapLayer.addTo(map);
-    const when = day < 0 ? dlabel(S.meta.window_start) + " – " + dlabel(S.meta.window_end) : dlabel(S.meta.dates[day]);
+    const when = day < 0 ? dlabel(S.meta.window_start) + " to " + dlabel(S.meta.window_end) : dlabel(S.meta.dates[day]);
     $("map-lede").innerHTML = mapMode === "points"
       ? "The same fires as raw dots. The sharper camera, VIIRS, draws <b>" + S.harmonisation.raw_ratio_viirs_to_modis_detections + "×</b> as many dots as MODIS, " + when + "."
       : day < 0
@@ -206,7 +209,7 @@
 
     const schema = [["latitude, longitude", "latitude, longitude", "latitude, longitude"], ["time (UTC)", "acq_date + acq_time", "acq_date + acq_time"],
       ["satellite", "satellite (Terra / Aqua)", "satellite (S-NPP / NOAA-20 / NOAA-21)"], ["fire temperature", "brightness", "bright_ti4"], ["background temperature", "bright_t31", "bright_ti5"],
-      ["fire power", "frp", "frp"], ["pixel size", "scan × track (~1 km)", "scan × track (~375 m)"], ["grade", "confidence 0–100 → 3 grades", "confidence low / nominal / high"],
+      ["fire power", "frp", "frp"], ["pixel size", "scan × track (~1 km)", "scan × track (~375 m)"], ["grade", "confidence 0 to 100, cut into 3 grades", "confidence low / nominal / high"],
       ["square and day", "0.1° square · local date at UTC+7", "0.1° square · local date at UTC+7"]];
     $("schema").innerHTML = "<thead><tr><th>Shared column</th><th>MODIS C6.1 file</th><th>VIIRS C2 files</th></tr></thead><tbody>" +
       schema.map((r) => "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>").join("") + "</tbody>";
@@ -216,4 +219,77 @@
       "<div><b>" + h.cell_ratio_viirs_to_modis + "×</b><span>VIIRS squares for every MODIS square, on the shared grid</span></div>" +
       "<div><b>" + h.modis_cells_also_seen_by_viirs_pct + "%</b><span>of MODIS's burning squares also seen by VIIRS the same day</span></div>";
   }
+
+  /* ---------- September 2015: the same record, one month (data/archive-2015.json) ---------- */
+  function loadArchive() {
+    return fetch("data/archive-2015.json").then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then((a) => { if (a && a.six_province_total && Object.keys(a.six_province_total).length) ARC = a; })
+      .catch(() => { ARC = null; });
+  }
+
+  const WORDS = { 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven" };
+  const ordinal = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10 > 3 ? 0 : n % 10] || "th");
+  const dayNum = (iso) => +iso.slice(8);
+  const longDay = (iso) => dayNum(iso) + " " + MONTH[+iso.slice(5, 7) - 1];
+  const shortDay = (iso) => dayNum(iso) + " " + MON[+iso.slice(5, 7) - 1];
+
+  function renderArchive() {
+    if (!ARC) {
+      $("arc-lede").textContent = "The September 2015 archive is not loaded.";
+      $("arc-body").hidden = true;
+      return;
+    }
+    const T = ARC.six_province_total, dates = Object.keys(T).sort();
+    const cl = ARC.events.closure_2015, closure = cl.date;
+    const peak = dates.reduce((a, d) => (T[d] > T[a] ? d : a), dates[0]);
+    const second = dates.filter((d) => d !== peak).reduce((a, d) => (T[d] > T[a] ? d : a), dates.find((d) => d !== peak));
+    const lead = Math.round((new Date(closure) - new Date(peak)) / 864e5);
+    $("arc-lede").innerHTML = "<b>In " + MONTH[+peak.slice(5, 7) - 1] + " " + peak.slice(0, 4) + " the fires peaked on " + longDay(peak) + ", " + (WORDS[lead] || lead) +
+      " days before every primary and secondary school in Singapore closed.</b> The morning of the closure was already quiet: " + fmt(T[closure]) +
+      " squares, against " + fmt(T[peak]) + " on the " + ordinal(dayNum(peak)) + ".";
+    $("arc-honest").textContent = second !== closure
+      ? longDay(second) + " burned almost as much, " + fmt(T[second]) + " squares, and no school closed. Fire counts alone do not explain smoke." : "";
+    const w = ARC.params.window, rows = ARC.rows_fetched;
+    $("arc-small").textContent = "NASA FIRMS archive, MODIS and VIIRS on one " + ARC.params.cell_deg + " degree grid, " + dayNum(w[0]) + " to " + longDay(w[1]) + " " + w[1].slice(0, 4) +
+      ". " + fmt(rows.MODIS_SP) + " MODIS rows and " + fmt(rows.VIIRS_SNPP_SP) + " VIIRS rows, fetched with a FIRMS MAP_KEY held in the environment. PSI " + cl.psi_24h_peak +
+      " is Singapore's 24-hour reading at " + cl.psi_24h_peak_time + " on " + longDay(closure) + " " + closure.slice(0, 4) + " (NEA).";
+    $("arc-body").hidden = false;
+    drawArchiveChart();
+  }
+
+  function drawArchiveChart() {
+    const T = ARC.six_province_total, dates = Object.keys(T).sort(), cl = ARC.events.closure_2015.date;
+    const peak = dates.reduce((a, d) => (T[d] > T[a] ? d : a), dates[0]);
+    const el = $("arc-chart"), W = Math.max(300, Math.floor(el.clientWidth || 300)), narrow = W < 600;
+    const H = narrow ? 270 : 360, L = 44, R = 8, TOP = 28, B = 26;
+    const ymax = Math.max(2000, Math.ceil(Math.max.apply(null, dates.map((d) => T[d])) / 500) * 500);
+    const y = (v) => TOP + (H - TOP - B) * (1 - v / ymax), bw = (W - L - R) / dates.length;
+    const est = (t) => t.length * 7.6;
+    let s = "<svg width='" + W + "' height='" + H + "' viewBox='0 0 " + W + " " + H + "' role='img' aria-label='Burning squares per day across the six provinces, " +
+      esc(longDay(dates[0]) + " to " + longDay(dates[dates.length - 1])) + " " + dates[0].slice(0, 4) + ". Peak " + esc(longDay(peak)) + ", " + fmt(T[peak]) + ". School closure " + esc(longDay(cl)) + ", " + fmt(T[cl]) + ".'>";
+    s += "<text x='" + L + "' y='15' font-size='12' fill='#6a645b'>Burning squares a day, six provinces</text>";
+    for (let g = 0; g <= ymax; g += 500) {
+      s += "<line x1='" + L + "' x2='" + (W - R) + "' y1='" + y(g).toFixed(1) + "' y2='" + y(g).toFixed(1) + "' stroke='#ddd6c8'/>" +
+        "<text x='" + (L - 6) + "' y='" + (y(g) + 4).toFixed(1) + "' text-anchor='end' font-size='12' fill='#6a645b'>" + fmt(g) + "</text>";
+    }
+    dates.forEach((d, i) => {
+      const x = L + i * bw, v = T[d], mark = d === peak || d === cl, fill = d === peak ? "#8f2410" : d === cl ? "#0f6b74" : "#f4b476", dn = dayNum(d);
+      s += "<rect x='" + (x + bw * 0.11).toFixed(1) + "' y='" + y(v).toFixed(1) + "' width='" + (bw * 0.78).toFixed(1) + "' height='" + (y(0) - y(v)).toFixed(1) + "' rx='2' fill='" + fill + "'><title>" + esc(shortDay(d)) + ": " + fmt(v) + "</title></rect>";
+      if (!narrow || mark || dn === 1 || dn % 5 === 0) {
+        s += "<text x='" + (x + bw / 2).toFixed(1) + "' y='" + (H - 8) + "' text-anchor='middle' font-size='" + (narrow ? 11 : 12) + "' fill='" + (mark ? "#1d1b18" : "#6a645b") + "' font-weight='" + (mark ? 700 : 400) + "'>" + dn + "</text>";
+      }
+    });
+    const cx = (d) => L + dates.indexOf(d) * bw + bw / 2;
+    const clamp = (c, t) => Math.min(W - 4 - est(t) / 2, Math.max(4 + est(t) / 2, c));
+    const pt = shortDay(peak) + " · " + fmt(T[peak]), ct = shortDay(cl) + " · " + fmt(T[cl]);
+    // narrow: end the peak label at the peak bar so the closure leader line (further right) never crosses it
+    s += "<text x='" + (narrow ? cx(peak) + bw * 0.45 : clamp(cx(peak), pt)).toFixed(1) + "' y='" + (y(T[peak]) - 8).toFixed(1) + "' text-anchor='" + (narrow ? "end" : "middle") + "' font-size='13' font-weight='800' fill='#8f2410'>" + esc(pt) + "</text>";
+    const cy = narrow ? 44 : y(ymax * 0.7);  // narrow: its own row above the peak label so the two never touch
+    s += "<text x='" + clamp(cx(cl), ct).toFixed(1) + "' y='" + cy.toFixed(1) + "' text-anchor='middle' font-size='13' font-weight='800' fill='#0f6b74'>" + esc(ct) + "</text>" +
+      "<line x1='" + cx(cl).toFixed(1) + "' x2='" + cx(cl).toFixed(1) + "' y1='" + (cy + 6).toFixed(1) + "' y2='" + (y(T[cl]) - 4).toFixed(1) + "' stroke='#0f6b74' stroke-width='2'/>";
+    el.innerHTML = s + "</svg>";
+  }
+
+  let rz;
+  window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (view === "2015" && ARC) drawArchiveChart(); }, 120); });
 })();

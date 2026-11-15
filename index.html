@@ -21,6 +21,7 @@
   <a href="?view=calendar" data-view="calendar">Calendar</a>
   <a href="?view=map" data-view="map">Map</a>
   <a href="?view=wind" data-view="wind">Wind windows</a>
+  <a href="?view=2015" data-view="2015">September 2015</a>
   <a href="?view=data" data-view="data">About the data</a>
 </nav>
 
@@ -29,6 +30,7 @@
     <div class="view-head">
       <h2>Burning calendar</h2>
       <p class="lede" id="cal-lede"></p>
+      <p class="lede arc-link"><a href="?view=2015" data-view="2015">September 2015: the same record, one month.</a></p>
     </div>
     <div class="controls">
       <label for="cal-sensor">Squares seen by</label>
@@ -74,12 +76,25 @@
     <p class="note" id="wind-note"></p>
   </section>
 
+  <section id="view-2015" class="view" hidden>
+    <div class="view-head">
+      <h2>September 2015</h2>
+      <p class="lede" id="arc-lede"></p>
+    </div>
+    <div id="arc-body" hidden>
+      <div class="chart-wrap" id="arc-chart"></div>
+      <p class="arc-honest" id="arc-honest"></p>
+      <p class="arc-honest">One month, one event. Not a forecast, and not a season.</p>
+      <p class="note" id="arc-small"></p>
+    </div>
+  </section>
+
   <section id="view-data" class="view about" hidden>
     <div class="view-head">
       <h2>About the data</h2>
     </div>
     <p id="about-1"><b>What you are looking at.</b> NASA publishes the fires it sees from space, free, every day. Two cameras, five satellites: MODIS flies on Terra and Aqua, VIIRS on S-NPP, NOAA-20 and NOAA-21. We put both onto one grid: a square counts as burning on a day if either camera saw fire in it.</p>
-    <p id="about-2"><b>What is missing.</b> We loaded one week, not the archive, so nothing here says anything about a season or a year. One of NASA's four files came back empty the day we fetched it, VIIRS S-NPP. It is shown as empty, not filled in.</p>
+    <p id="about-2"><b>What is missing.</b> The live view is one week. One month, September 2015, comes from the NASA archive. Neither supports a claim about a season or a year-on-year change. One of NASA's four files came back empty the day we fetched it, VIIRS S-NPP. It is shown as empty, not filled in.</p>
     <p id="about-npp">Why is the VIIRS S-NPP file empty? It is not a glitch: the Suomi NPP satellite stopped delivering new data at 13:00 UTC on 2 November 2026 (<a href="https://www.earthdata.nasa.gov/data/alerts-outages/suomi-npp-observations-cease-november-2-2026">NASA Earthdata alert</a>).</p>
     <p id="about-3"><b>What this is not.</b> Not a haze forecast, not PSI. The wind is the surface wind at one point per province, and it does not carry the smoke on its own.</p>
     <details class="proof">
