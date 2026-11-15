@@ -69,14 +69,22 @@ Team "Can See Or Not", solo: Lee Guan Feng. Singapore Local Event, challenge "Ha
 
 ## 6. Use of Super Intelligence
 
-Select **the options for code generation and text generation**. Do **not** select image or video
-generation: every visual is a real screenshot or an SVG chart built from the data, so no SI
-watermark is needed. If the form offers a free-text box, paste:
+Tick these five, and only these five:
+
+- Coding, Debugging, or Troubleshooting
+- Ideation or Brainstorming
+- Research or Information Gathering
+- Data Analysis and Interpretation
+- Writing, Editing, or Translation
+
+Leave clear: Building SI/ML Into the Project (the app has no model), Visual Design or Image
+Creation (nothing was generated; every visual is a screenshot or an SVG chart), Other
+Project-Related SI Use, and None.
+
+If there is a free-text box, paste:
 
 ```text
-Claude (Anthropic, via Claude Code) assisted with code and copy. No imagery was generated: every
-screenshot is the running app and every chart is drawn from data/facts.json or
-data/archive-2015.json. All data comes from the NASA and partner sources listed.
+Claude (Anthropic, via Claude Code) assisted with: code, debugging and layout (HTML, CSS, JavaScript); the written copy for the site, the deck and this form; research into the September 2015 event and into comparable public services; and the archive analysis behind the September 2015 chart. No image, video or audio was generated. Every visual is a screenshot of the running app or a chart drawn from data files. All data comes from the NASA and partner sources listed.
 ```
 
 ## 7. NASA Data (one row each: Link Text, then Link Url)
