@@ -193,12 +193,12 @@ slides.append(f"""
 </section>""")
 
 # 4 — what it does ------------------------------------------------------------
-CAL = (184, 262, 1072, 428)
+CAL = (184, 268, 1072, 456)  # table spans y 288..710 at 1440 wide; leave a margin, cut the new archive link above it
 slides.append(f"""
 <section class="slide s4">
   <h2>The whole week on one page.</h2>
   <p class="body">{top_cells} squares in South Sumatra. {riau_cells} in Riau, the closest to Singapore.</p>
-  <figure>{shot("desktop-calendar.png", *CAL, 800)}
+  <figure>{shot("desktop-calendar.png", *CAL, 772)}
     {key(list(zip(HEAT, BINS)) + [("#0f6b74", "wind pointing at us")])}
     {cap("Live app, burning calendar \u00b7 " + SRC)}</figure>
   <p class="small"><b>How to read it:</b> one row per province, with the week's total. Darker square, more fire that day. Teal bar, the wind pointing at Singapore.</p>

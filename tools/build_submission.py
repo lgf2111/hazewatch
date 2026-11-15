@@ -134,7 +134,7 @@ field(
 3. VIIRS NOAA-20 Collection 2 NRT active fire (VJ114IMGTDL), 375 m: {FIRMS}/noaa-20-viirs-c2/csv/J1_VIIRS_C2_SouthEast_Asia_7d.csv ({n20} rows)
 4. VIIRS NOAA-21 Collection 2 NRT active fire (VJ214IMGTDL), 375 m: {FIRMS}/noaa-21-viirs-c2/csv/J2_VIIRS_C2_SouthEast_Asia_7d.csv ({n21} rows)
 5. NASA GIBS imagery (WMTS), layer BlueMarble_ShadedRelief_Bathymetry: https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/
-6. NASA POWER daily meteorology (WD10M, WS10M, PRECTOTCORR): https://power.larc.nasa.gov/api/temporal/daily/point
+6. NASA POWER daily meteorology (WD10M, WS10M, PRECTOTCORR): https://power.larc.nasa.gov/docs/services/api/temporal/daily/
 7. FIRMS archive, MODIS_SP and VIIRS_SNPP_SP (standard processing), 1 to 30 September 2015, area 95,-6,119,4, via the FIRMS area API: https://firms.modaps.eosdis.nasa.gov/api/ ({rows_m} and {rows_v} rows fetched)
 The live files above were fetched on {fetched.day} {fetched:%B %Y} without a key. The September 2015 archive pull used a FIRMS MAP_KEY read from the environment (never stored in the repo).""",
 )

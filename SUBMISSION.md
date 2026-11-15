@@ -13,7 +13,7 @@ Each field below is plain ASCII text between the fences. The count is the exact 
 | Demo link | 34 | 200 | 1 |
 | Final project link | 36 | 200 | 1 |
 | Detailed description | 3,975 | 4,000 | 680 |
-| NASA data used | 1,394 | 1,500 | 134 |
+| NASA data used | 1,403 | 1,500 | 134 |
 | Partner data and references | 1,311 | 2,000 | 144 |
 | Gallery blurb (60 words) | 360 | 450 | 60 |
 
@@ -85,7 +85,7 @@ Team "Can See Or Not", solo: Lee Guan Feng. Singapore Local Event, challenge "Ha
 ```
 
 ## NASA data used
-*1,394 characters · limit 1,500 · 134 words*
+*1,403 characters · limit 1,500 · 134 words*
 
 ```text
 1. MODIS Collection 6.1 NRT active fire (MCD14DL), Terra and Aqua, 1 km: https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_SouthEast_Asia_7d.csv (1,961 rows)
@@ -93,7 +93,7 @@ Team "Can See Or Not", solo: Lee Guan Feng. Singapore Local Event, challenge "Ha
 3. VIIRS NOAA-20 Collection 2 NRT active fire (VJ114IMGTDL), 375 m: https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_SouthEast_Asia_7d.csv (12,961 rows)
 4. VIIRS NOAA-21 Collection 2 NRT active fire (VJ214IMGTDL), 375 m: https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_SouthEast_Asia_7d.csv (13,601 rows)
 5. NASA GIBS imagery (WMTS), layer BlueMarble_ShadedRelief_Bathymetry: https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/
-6. NASA POWER daily meteorology (WD10M, WS10M, PRECTOTCORR): https://power.larc.nasa.gov/api/temporal/daily/point
+6. NASA POWER daily meteorology (WD10M, WS10M, PRECTOTCORR): https://power.larc.nasa.gov/docs/services/api/temporal/daily/
 7. FIRMS archive, MODIS_SP and VIIRS_SNPP_SP (standard processing), 1 to 30 September 2015, area 95,-6,119,4, via the FIRMS area API: https://firms.modaps.eosdis.nasa.gov/api/ (53,049 and 237,157 rows fetched)
 The live files above were fetched on 15 November 2026 without a key. The September 2015 archive pull used a FIRMS MAP_KEY read from the environment (never stored in the repo).
 ```
