@@ -187,10 +187,10 @@
     mapLayer.addTo(map);
     const when = day < 0 ? dlabel(S.meta.window_start) + " – " + dlabel(S.meta.window_end) : dlabel(S.meta.dates[day]);
     $("map-lede").innerHTML = mapMode === "points"
-      ? "The same fires as raw dots. The sharper instrument, VIIRS, draws <b>" + S.harmonisation.raw_ratio_viirs_to_modis_detections + "×</b> as many dots as MODIS, " + when + "."
+      ? "The same fires as raw dots. The sharper camera, VIIRS, draws <b>" + S.harmonisation.raw_ratio_viirs_to_modis_detections + "×</b> as many dots as MODIS, " + when + "."
       : day < 0
-        ? "<b>" + fmt(S.cells_total.cells) + " squares NASA saw fire in</b> across South-East Asia, " + when + ". One square counts once a day, whichever instrument saw it."
-        : "Squares NASA saw fire in on " + when + ". One square counts once a day, whichever instrument saw it.";
+        ? "<b>" + fmt(S.cells_total.cells) + " squares NASA saw fire in</b> across South-East Asia, " + when + ". One square counts once a day, whichever camera saw it."
+        : "Squares NASA saw fire in on " + when + ". One square counts once a day, whichever camera saw it.";
   }
 
   /* ---------- about the data: the proof that both instruments share one scale and one layout ---------- */

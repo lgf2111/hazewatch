@@ -137,3 +137,9 @@ footer { max-width: 1120px; margin: 0 auto; padding: 14px 16px 30px; border-top:
   .tiles div { padding: 14px 16px; }
   footer { padding: 16px 28px 36px; }
 }
+
+/* About the data: the technical proof, folded away so the page stays readable */
+details.proof { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 14px; }
+details.proof summary { cursor: pointer; font-weight: 700; color: var(--teal); font-size: 15px; line-height: 1.35; }
+details.proof summary:hover { text-decoration: underline; }
+details.proof[open] summary { margin-bottom: 16px; }
