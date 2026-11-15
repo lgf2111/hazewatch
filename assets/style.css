@@ -1,0 +1,164 @@
+:root {
+  --paper: #f6f3ec;
+  --card: #fffdf8;
+  --ink: #1d1b18;
+  --muted: #6a645b;
+  --line: #ddd6c8;
+  --ember: #c2410c;
+  --teal: #0f6b74;
+  --warn-bg: #fff1d6;
+  --warn-line: #e2b25a;
+  --h0: #ece7db; --h1: #fde2bd; --h2: #f8b96e; --h3: #ee8532; --h4: #cf4d1a; --h5: #8f2410;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+a { color: var(--ember); }
+h1, h2, h3, p { margin: 0; }
+.sr { position: absolute; left: -9999px; }
+
+.top { padding: 12px 16px 10px; border-bottom: 1px solid var(--line); background: var(--card); }
+.brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand h1 { font-size: 20px; letter-spacing: -0.01em; }
+.brand h1::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--ember); margin-right: 7px; }
+.tag { color: var(--muted); font-size: 13px; }
+.stamp { margin-top: 6px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.stamp b { font-weight: 600; }
+.chips { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.chips li { font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chips li b { font-weight: 650; }
+.chips li .r { display: none; }
+.chips li.empty { background: var(--warn-bg); border-color: var(--warn-line); }
+.limits-bar { margin-top: 8px; font-size: 12px; padding: 5px 8px; background: var(--warn-bg); border-left: 3px solid var(--warn-line); }
+
+.tabs { display: flex; gap: 2px; padding: 0 10px; background: var(--card); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 1000; overflow-x: auto; }
+.tabs a { padding: 10px 9px; font-size: 14px; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; }
+.tabs a.on { color: var(--ink); border-color: var(--ember); font-weight: 600; }
+
+main { max-width: 1120px; margin: 0 auto; padding: 14px 16px 24px; }
+.view-head h2 { font-size: 18px; }
+.lede { margin-top: 3px; font-size: 14px; }
+.lede b { font-variant-numeric: tabular-nums; }
+h3 { font-size: 15px; margin: 22px 0 8px; }
+.note { margin-top: 10px; font-size: 12.5px; color: var(--muted); }
+
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 10px; font-size: 13px; }
+select { font: inherit; font-size: 13px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button { font: inherit; font-size: 13px; padding: 6px 10px; border: 0; background: var(--card); color: var(--ink); cursor: pointer; }
+.seg button.on { background: var(--ink); color: #fff; }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+
+/* calendar */
+.cal { table-layout: fixed; }
+.cal th, .cal td { padding: 0; }
+.cal thead th { font-size: 11px; font-weight: 500; color: var(--muted); text-align: center; padding-bottom: 4px; line-height: 1.2; }
+.cal thead th b { display: block; font-size: 13px; color: var(--ink); font-weight: 600; }
+.cal thead th.partial b::after { content: "*"; color: var(--muted); }
+.cal th.name { width: 96px; text-align: left; font-weight: 600; font-size: 13px; padding-right: 6px; line-height: 1.15; cursor: pointer; }
+.cal th.name small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.cal tr.group th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 10px 0 3px; font-weight: 600; }
+.cal td { border: 2px solid var(--paper); }
+.cal .c { position: relative; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; border-radius: 3px; }
+.c.b0 { background: var(--h0); color: var(--muted); font-weight: 400; }
+.c.b1 { background: var(--h1); } .c.b2 { background: var(--h2); } .c.b3 { background: var(--h3); }
+.c.b4 { background: var(--h4); color: #fff; } .c.b5 { background: var(--h5); color: #fff; }
+.c .w { position: absolute; left: 4px; right: 4px; bottom: 3px; height: 4px; border-radius: 2px; }
+.c .w.al { background: var(--teal); box-shadow: 0 0 0 1px #fff; }
+.c .w.nw { background: repeating-linear-gradient(45deg, #9a9488 0 2px, transparent 2px 4px); }
+.cal tr.else .c { height: 30px; font-size: 12px; background: transparent; color: var(--muted); font-weight: 500; }
+.cal tr.else th.name { cursor: default; font-weight: 500; color: var(--muted); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 12px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; }
+.legend i.bar { height: 4px; width: 18px; background: var(--teal); }
+.legend i.dot { border-radius: 50%; width: 10px; height: 10px; border: 1px solid rgba(0,0,0,.4); }
+
+.empty-state { margin-top: 22px; padding: 14px; border: 1.5px dashed var(--line); border-radius: 8px; }
+.empty-state h3 { margin: 0 0 4px; }
+.empty-state p { font-size: 13px; color: var(--muted); }
+.empty-state strong { color: var(--ink); }
+
+/* map */
+#map { height: 46vh; min-height: 320px; border: 1px solid var(--line); border-radius: 8px; background: #0b2a4a; }
+.sg-label { background: #fff; border: 0; border-radius: 3px; padding: 1px 5px; font-size: 11px; font-weight: 700; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.sg-label::before { display: none; }
+.prov-label { background: rgba(20,20,20,.72); border: 0; color: #fff; font-size: 11px; padding: 1px 5px; border-radius: 3px; box-shadow: none; white-space: nowrap; }
+.prov-label::before { display: none; }
+
+/* wind */
+.pchips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 8px; }
+.pchips button { font: inherit; font-size: 13px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer; }
+.pchips button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.geo { font-size: 13px; margin-bottom: 10px; }
+.wind { table-layout: fixed; }
+.wind th, .wind td { text-align: center; padding: 6px 1px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; font-size: 13px; }
+.wind thead th { font-size: 11px; font-weight: 500; color: var(--muted); line-height: 1.2; }
+.wind thead th b { display: block; font-size: 13px; color: var(--ink); }
+.wind th.rl { width: 84px; text-align: left; font-size: 12px; font-weight: 600; line-height: 1.2; }
+.wind th.rl small { display: block; font-weight: 400; color: var(--muted); font-size: 10.5px; }
+.wind td small { display: block; font-size: 10.5px; color: var(--muted); }
+.wind td.al { background: #dff0ee; }
+.wind td .badge { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; background: var(--teal); border-radius: 3px; padding: 1px 4px; }
+.wind td.na { color: var(--muted); }
+.wind svg { display: block; margin: 0 auto 1px; }
+.wind .fire { font-weight: 700; font-size: 15px; }
+.callout { margin-top: 14px; padding: 10px 12px; background: var(--warn-bg); border-left: 3px solid var(--warn-line); font-size: 13px; }
+
+/* data */
+.missing { display: grid; gap: 8px; margin-top: 12px; }
+.missing div { padding: 10px 12px; background: var(--warn-bg); border-left: 3px solid var(--warn-line); font-size: 13px; }
+.missing b { display: block; font-size: 14px; }
+.plain th, .plain td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; font-variant-numeric: tabular-nums; }
+.plain th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+.plain td.num { text-align: right; padding-right: 14px; white-space: nowrap; }
+.plain th.num { text-align: right; padding-right: 14px; }
+.plain td small { display: block; color: var(--muted); word-break: break-all; }
+.plain tr.empty td { background: var(--warn-bg); }
+.plain code { font-size: 12px; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.tiles div { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.tiles b { display: block; font-size: 24px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.tiles span { font-size: 12px; color: var(--muted); display: block; line-height: 1.3; }
+.prov-bar { margin-top: 12px; }
+.prov-bar .bar { display: flex; height: 22px; border-radius: 4px; overflow: hidden; }
+.prov-bar .bar i { display: block; }
+.limits { margin: 0; padding-left: 18px; font-size: 13.5px; }
+.limits li { margin-bottom: 5px; }
+
+footer { max-width: 1120px; margin: 0 auto; padding: 14px 16px 30px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+
+@media (min-width: 760px) {
+  body { font-size: 16px; }
+  .top { padding: 14px 28px 12px; display: grid; grid-template-columns: auto 1fr; column-gap: 28px; align-items: center; }
+  .brand { grid-row: 1 / span 2; display: block; }
+  .brand h1 { font-size: 26px; }
+  .stamp { margin-top: 0; font-size: 13px; }
+  .chips { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips li { font-size: 13px; }
+  .chips li .r { display: inline; }
+  #map { height: min(62vh, 560px); }
+  .limits-bar { grid-column: 1 / -1; font-size: 13px; }
+  .tabs { padding: 0 22px; }
+  .tabs a { padding: 11px 14px; font-size: 15px; }
+  main { padding: 20px 28px 32px; }
+  .view-head h2 { font-size: 22px; }
+  .lede { font-size: 15.5px; }
+  .cal th.name { width: 190px; font-size: 15px; }
+  .cal th.name small { font-size: 12px; }
+  .cal .c { height: 52px; font-size: 17px; }
+  .cal thead th { font-size: 12px; } .cal thead th b { font-size: 15px; }
+  .wind th.rl { width: 170px; font-size: 14px; } .wind th.rl small { font-size: 12px; }
+  .wind th, .wind td { font-size: 15px; padding: 9px 2px; }
+  .wind td small { font-size: 12px; }
+  .missing { grid-template-columns: repeat(3, 1fr); }
+  .tiles b { font-size: 34px; } .tiles span { font-size: 13px; }
+  .tiles div { padding: 14px 16px; }
+  footer { padding: 16px 28px 36px; }
+}

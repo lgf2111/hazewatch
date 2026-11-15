@@ -1,0 +1,1242 @@
+{
+ "generated_utc": "2026-11-15T07:42:42+00:00",
+ "fetch_time_utc": "2026-11-15T07:41:49+00:00",
+ "fetch_time_sgt": "2026-11-15 15:41 SGT",
+ "window_start": "2026-11-08",
+ "window_end": "2026-11-15",
+ "calendar_dates_utc7": [
+  "2026-11-08",
+  "2026-11-09",
+  "2026-11-10",
+  "2026-11-11",
+  "2026-11-12",
+  "2026-11-13",
+  "2026-11-14",
+  "2026-11-15"
+ ],
+ "note_window": "FIRMS '7d' files span 7 x 24 h of UTC acquisitions; binned to local dates at UTC+7 this can touch more than 7 calendar dates, and the first and last are partial days.",
+ "parameters": {
+  "cell_deg": 0.1,
+  "local_day_utc_offset_h": 7,
+  "dry_day_mm": 1.0,
+  "dry_day_cap": 5,
+  "aligned_min_alignment": 0.5,
+  "modis_confidence_breaks": {
+   "low": "0-29",
+   "nominal": "30-79",
+   "high": "80-100"
+  },
+  "default_filter": "nominal + high"
+ },
+ "feeds": {
+  "modis": {
+   "dataset": "MODIS Collection 6.1 NRT active fire (MCD14DL), 1 km",
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_SouthEast_Asia_7d.csv",
+   "file": "data/raw/MODIS_C6_1_SouthEast_Asia_7d.csv",
+   "http_status": 200,
+   "bytes": 151236,
+   "fetched_utc": "2026-11-15T07:41:42+00:00",
+   "empty": false,
+   "rows": 1961,
+   "frp_total_mw": 33784.4,
+   "frp_median_mw": 10.25,
+   "frp_max_mw": 402.02,
+   "rows_by_acq_date_utc": {
+    "2026-11-08": 148,
+    "2026-11-09": 431,
+    "2026-11-10": 265,
+    "2026-11-11": 377,
+    "2026-11-12": 300,
+    "2026-11-13": 95,
+    "2026-11-14": 313,
+    "2026-11-15": 32
+   },
+   "rows_by_platform": {
+    "Aqua": 1163,
+    "Terra": 798
+   },
+   "rows_by_confidence": {
+    "low": 138,
+    "nominal": 1513,
+    "high": 310
+   },
+   "rows_in_focus_provinces": 101,
+   "lat_range": [
+    -11.96823,
+    30.00076
+   ],
+   "lon_range": [
+    88.56335,
+    155.19637
+   ]
+  },
+  "viirs_snpp": {
+   "dataset": "VIIRS S-NPP Collection 2 NRT active fire (VNP14IMGTDL), 375 m",
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "file": "data/raw/SUOMI_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "http_status": 200,
+   "bytes": 112,
+   "fetched_utc": "2026-11-15T07:41:43+00:00",
+   "empty": true,
+   "rows": 0,
+   "frp_total_mw": 0,
+   "frp_median_mw": null,
+   "frp_max_mw": null,
+   "rows_by_acq_date_utc": {},
+   "rows_by_platform": {},
+   "rows_by_confidence": {
+    "low": 0,
+    "nominal": 0,
+    "high": 0
+   },
+   "rows_in_focus_provinces": 0,
+   "lat_range": null,
+   "lon_range": null
+  },
+  "viirs_noaa20": {
+   "dataset": "VIIRS NOAA-20 Collection 2 NRT active fire (VJ114IMGTDL), 375 m",
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "file": "data/raw/J1_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "http_status": 200,
+   "bytes": 1087739,
+   "fetched_utc": "2026-11-15T07:41:46+00:00",
+   "empty": false,
+   "rows": 12961,
+   "frp_total_mw": 82629.8,
+   "frp_median_mw": 4.08,
+   "frp_max_mw": 334.19,
+   "rows_by_acq_date_utc": {
+    "2026-11-08": 2010,
+    "2026-11-09": 1649,
+    "2026-11-10": 2140,
+    "2026-11-11": 2949,
+    "2026-11-12": 1245,
+    "2026-11-13": 1296,
+    "2026-11-14": 1667,
+    "2026-11-15": 5
+   },
+   "rows_by_platform": {
+    "NOAA-20": 12961
+   },
+   "rows_by_confidence": {
+    "low": 980,
+    "nominal": 11764,
+    "high": 217
+   },
+   "rows_in_focus_provinces": 706,
+   "lat_range": [
+    -11.97624,
+    30.99763
+   ],
+   "lon_range": [
+    88.11863,
+    161.65247
+   ]
+  },
+  "viirs_noaa21": {
+   "dataset": "VIIRS NOAA-21 Collection 2 NRT active fire (VJ214IMGTDL), 375 m",
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "file": "data/raw/J2_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "http_status": 200,
+   "bytes": 1141499,
+   "fetched_utc": "2026-11-15T07:41:49+00:00",
+   "empty": false,
+   "rows": 13601,
+   "frp_total_mw": 101652.6,
+   "frp_median_mw": 4.85,
+   "frp_max_mw": 357.78,
+   "rows_by_acq_date_utc": {
+    "2026-11-08": 3028,
+    "2026-11-09": 1970,
+    "2026-11-10": 1908,
+    "2026-11-11": 2416,
+    "2026-11-12": 1017,
+    "2026-11-13": 1018,
+    "2026-11-14": 2031,
+    "2026-11-15": 213
+   },
+   "rows_by_platform": {
+    "NOAA-21": 13601
+   },
+   "rows_by_confidence": {
+    "low": 1076,
+    "nominal": 12241,
+    "high": 284
+   },
+   "rows_in_focus_provinces": 774,
+   "lat_range": [
+    -11.97638,
+    30.99496
+   ],
+   "lon_range": [
+    88.06379,
+    161.65491
+   ]
+  }
+ },
+ "modis_rows": 1961,
+ "viirs_snpp_rows": 0,
+ "noaa20_rows": 12961,
+ "noaa21_rows": 13601,
+ "total_rows": 28523,
+ "all_sensors": {
+  "rows": 28523,
+  "frp_total_mw": 218066.8,
+  "frp_median_mw": 4.8,
+  "frp_max_mw": 402.02
+ },
+ "rows_low": 2194,
+ "rows_nominal": 25518,
+ "rows_high": 811,
+ "rows_by_sensor_and_confidence": {
+  "MODIS": {
+   "low": 138,
+   "nominal": 1513,
+   "high": 310
+  },
+  "VIIRS": {
+   "low": 2056,
+   "nominal": 24005,
+   "high": 501
+  }
+ },
+ "active_cell_days": 9647,
+ "cell_days_provenance_all": {
+  "cells": 9647,
+  "modis_only": 499,
+  "viirs_only": 8526,
+  "both": 622
+ },
+ "focus_cell_days": 724,
+ "cell_days_provenance_focus": {
+  "cells": 724,
+  "modis_only": 52,
+  "viirs_only": 648,
+  "both": 24
+ },
+ "elsewhere_cell_days": 8923,
+ "raw_ratio_viirs_to_modis_detections": 13.4,
+ "cell_ratio_viirs_to_modis": 8.2,
+ "modis_cells_also_seen_by_viirs_pct": 55.5,
+ "cells_seen_by_modis": 1121,
+ "cells_seen_by_viirs": 9148,
+ "focus_provinces": {
+  "riau": {
+   "name": "Riau",
+   "group": "Sumatra",
+   "centroid_lat_lon": [
+    0.455,
+    101.748
+   ],
+   "distance_to_singapore_km": 251,
+   "bearing_to_singapore_deg": 67,
+   "cell_days": 8,
+   "detections_nominal_high": 10,
+   "aligned_days": 0,
+   "frp_total_mw": 23.7,
+   "by_date": {
+    "2026-11-08": {
+     "cells": 0,
+     "modis_only": 0,
+     "viirs_only": 0,
+     "both": 0,
+     "detections": 0,
+     "modis": 0,
+     "viirs": 0,
+     "frp_mw": 0,
+     "wind_from_deg": 77,
+     "wind_alignment": 0.0,
+     "precip_mm": 36.5,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-09": {
+     "cells": 0,
+     "modis_only": 0,
+     "viirs_only": 0,
+     "both": 0,
+     "detections": 0,
+     "modis": 0,
+     "viirs": 0,
+     "frp_mw": 0,
+     "wind_from_deg": 5,
+     "wind_alignment": 0.0,
+     "precip_mm": 17.7,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-10": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 1,
+     "modis": 0,
+     "viirs": 1,
+     "frp_mw": 2.5,
+     "wind_from_deg": 318,
+     "wind_alignment": 0.32,
+     "precip_mm": 15.3,
+     "dry_days": 0,
+     "index": 0.16,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-11": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 2,
+     "modis": 0,
+     "viirs": 2,
+     "frp_mw": 12.4,
+     "wind_from_deg": 345,
+     "wind_alignment": 0.0,
+     "precip_mm": 10.5,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-12": {
+     "cells": 0,
+     "modis_only": 0,
+     "viirs_only": 0,
+     "both": 0,
+     "detections": 0,
+     "modis": 0,
+     "viirs": 0,
+     "frp_mw": 0,
+     "wind_from_deg": 243,
+     "wind_alignment": 1.0,
+     "precip_mm": 11.3,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-13": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 2,
+     "modis": 0,
+     "viirs": 2,
+     "frp_mw": 5.6,
+     "wind_from_deg": 59,
+     "wind_alignment": 0.0,
+     "precip_mm": 28.9,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-14": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 1,
+     "modis": 0,
+     "viirs": 1,
+     "frp_mw": 0.6,
+     "wind_from_deg": 131,
+     "wind_alignment": 0.0,
+     "precip_mm": 38.0,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-15": {
+     "cells": 4,
+     "modis_only": 0,
+     "viirs_only": 4,
+     "both": 0,
+     "detections": 4,
+     "modis": 0,
+     "viirs": 4,
+     "frp_mw": 2.6,
+     "wind_from_deg": 331,
+     "wind_alignment": 0.1,
+     "precip_mm": 13.3,
+     "dry_days": 0,
+     "index": 0.21,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    }
+   }
+  },
+  "jambi": {
+   "name": "Jambi",
+   "group": "Sumatra",
+   "centroid_lat_lon": [
+    -1.693,
+    102.752
+   ],
+   "distance_to_singapore_km": 359,
+   "bearing_to_singapore_deg": 19,
+   "cell_days": 31,
+   "detections_nominal_high": 35,
+   "aligned_days": 2,
+   "frp_total_mw": 156.2,
+   "by_date": {
+    "2026-11-08": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 1,
+     "modis": 0,
+     "viirs": 1,
+     "frp_mw": 3.2,
+     "wind_from_deg": 134,
+     "wind_alignment": 0.43,
+     "precip_mm": 5.8,
+     "dry_days": 0,
+     "index": 0.21,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-09": {
+     "cells": 3,
+     "modis_only": 1,
+     "viirs_only": 2,
+     "both": 0,
+     "detections": 4,
+     "modis": 2,
+     "viirs": 2,
+     "frp_mw": 44.0,
+     "wind_from_deg": 124,
+     "wind_alignment": 0.26,
+     "precip_mm": 7.2,
+     "dry_days": 0,
+     "index": 0.39,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-10": {
+     "cells": 3,
+     "modis_only": 0,
+     "viirs_only": 3,
+     "both": 0,
+     "detections": 3,
+     "modis": 0,
+     "viirs": 3,
+     "frp_mw": 4.5,
+     "wind_from_deg": 144,
+     "wind_alignment": 0.58,
+     "precip_mm": 7.3,
+     "dry_days": 0,
+     "index": 0.86,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-11": {
+     "cells": 14,
+     "modis_only": 1,
+     "viirs_only": 12,
+     "both": 1,
+     "detections": 15,
+     "modis": 2,
+     "viirs": 13,
+     "frp_mw": 71.2,
+     "wind_from_deg": 328,
+     "wind_alignment": 0.0,
+     "precip_mm": 12.6,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-12": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 1,
+     "modis": 0,
+     "viirs": 1,
+     "frp_mw": 1.4,
+     "wind_from_deg": 186,
+     "wind_alignment": 0.97,
+     "precip_mm": 17.1,
+     "dry_days": 0,
+     "index": 0.49,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-13": {
+     "cells": 7,
+     "modis_only": 1,
+     "viirs_only": 6,
+     "both": 0,
+     "detections": 9,
+     "modis": 1,
+     "viirs": 8,
+     "frp_mw": 30.0,
+     "wind_from_deg": 121,
+     "wind_alignment": 0.21,
+     "precip_mm": 15.1,
+     "dry_days": 0,
+     "index": 0.73,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-14": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 1,
+     "modis": 0,
+     "viirs": 1,
+     "frp_mw": 1.1,
+     "wind_from_deg": 35,
+     "wind_alignment": 0.0,
+     "precip_mm": 26.4,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-15": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 1,
+     "modis": 0,
+     "viirs": 1,
+     "frp_mw": 0.8,
+     "wind_from_deg": 325,
+     "wind_alignment": 0.0,
+     "precip_mm": 17.7,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    }
+   }
+  },
+  "south-sumatra": {
+   "name": "South Sumatra",
+   "group": "Sumatra",
+   "centroid_lat_lon": [
+    -3.231,
+    104.187
+   ],
+   "distance_to_singapore_km": 511,
+   "bearing_to_singapore_deg": 355,
+   "cell_days": 275,
+   "detections_nominal_high": 462,
+   "aligned_days": 4,
+   "frp_total_mw": 2800.1,
+   "by_date": {
+    "2026-11-08": {
+     "cells": 34,
+     "modis_only": 2,
+     "viirs_only": 32,
+     "both": 0,
+     "detections": 56,
+     "modis": 2,
+     "viirs": 54,
+     "frp_mw": 487.3,
+     "wind_from_deg": 90,
+     "wind_alignment": 0.09,
+     "precip_mm": 6.8,
+     "dry_days": 0,
+     "index": 1.57,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-09": {
+     "cells": 42,
+     "modis_only": 1,
+     "viirs_only": 41,
+     "both": 0,
+     "detections": 80,
+     "modis": 2,
+     "viirs": 78,
+     "frp_mw": 648.0,
+     "wind_from_deg": 70,
+     "wind_alignment": 0.0,
+     "precip_mm": 0.4,
+     "dry_days": 1,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-10": {
+     "cells": 58,
+     "modis_only": 1,
+     "viirs_only": 57,
+     "both": 0,
+     "detections": 114,
+     "modis": 1,
+     "viirs": 113,
+     "frp_mw": 377.4,
+     "wind_from_deg": 131,
+     "wind_alignment": 0.72,
+     "precip_mm": 0.5,
+     "dry_days": 2,
+     "index": 29.25,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-11": {
+     "cells": 78,
+     "modis_only": 25,
+     "viirs_only": 43,
+     "both": 10,
+     "detections": 112,
+     "modis": 46,
+     "viirs": 66,
+     "frp_mw": 1000.4,
+     "wind_from_deg": 116,
+     "wind_alignment": 0.51,
+     "precip_mm": 3.2,
+     "dry_days": 0,
+     "index": 19.79,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-12": {
+     "cells": 21,
+     "modis_only": 0,
+     "viirs_only": 21,
+     "both": 0,
+     "detections": 39,
+     "modis": 0,
+     "viirs": 39,
+     "frp_mw": 43.8,
+     "wind_from_deg": 159,
+     "wind_alignment": 0.96,
+     "precip_mm": 4.3,
+     "dry_days": 0,
+     "index": 10.08,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-13": {
+     "cells": 24,
+     "modis_only": 0,
+     "viirs_only": 24,
+     "both": 0,
+     "detections": 35,
+     "modis": 0,
+     "viirs": 35,
+     "frp_mw": 188.3,
+     "wind_from_deg": 127,
+     "wind_alignment": 0.67,
+     "precip_mm": 13.9,
+     "dry_days": 0,
+     "index": 8.03,
+     "aligned": true,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-14": {
+     "cells": 2,
+     "modis_only": 0,
+     "viirs_only": 2,
+     "both": 0,
+     "detections": 3,
+     "modis": 0,
+     "viirs": 3,
+     "frp_mw": 2.6,
+     "wind_from_deg": 329,
+     "wind_alignment": 0.0,
+     "precip_mm": 3.2,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-15": {
+     "cells": 16,
+     "modis_only": 0,
+     "viirs_only": 16,
+     "both": 0,
+     "detections": 23,
+     "modis": 0,
+     "viirs": 23,
+     "frp_mw": 52.3,
+     "wind_from_deg": 321,
+     "wind_alignment": 0.0,
+     "precip_mm": 14.1,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    }
+   }
+  },
+  "west-kalimantan": {
+   "name": "West Kalimantan",
+   "group": "Kalimantan",
+   "centroid_lat_lon": [
+    -0.086,
+    111.168
+   ],
+   "distance_to_singapore_km": 833,
+   "bearing_to_singapore_deg": 281,
+   "cell_days": 53,
+   "detections_nominal_high": 86,
+   "aligned_days": 2,
+   "frp_total_mw": 897.3,
+   "by_date": {
+    "2026-11-08": {
+     "cells": 7,
+     "modis_only": 0,
+     "viirs_only": 7,
+     "both": 0,
+     "detections": 9,
+     "modis": 0,
+     "viirs": 9,
+     "frp_mw": 85.6,
+     "wind_from_deg": 342,
+     "wind_alignment": 0.0,
+     "precip_mm": 9.4,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-09": {
+     "cells": 8,
+     "modis_only": 0,
+     "viirs_only": 8,
+     "both": 0,
+     "detections": 17,
+     "modis": 0,
+     "viirs": 17,
+     "frp_mw": 222.1,
+     "wind_from_deg": 295,
+     "wind_alignment": 0.0,
+     "precip_mm": 13.7,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-10": {
+     "cells": 16,
+     "modis_only": 5,
+     "viirs_only": 9,
+     "both": 2,
+     "detections": 20,
+     "modis": 8,
+     "viirs": 12,
+     "frp_mw": 193.2,
+     "wind_from_deg": 216,
+     "wind_alignment": 0.0,
+     "precip_mm": 8.1,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-11": {
+     "cells": 1,
+     "modis_only": 0,
+     "viirs_only": 1,
+     "both": 0,
+     "detections": 2,
+     "modis": 0,
+     "viirs": 2,
+     "frp_mw": 5.5,
+     "wind_from_deg": 241,
+     "wind_alignment": 0.0,
+     "precip_mm": 8.3,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-12": {
+     "cells": 4,
+     "modis_only": 0,
+     "viirs_only": 4,
+     "both": 0,
+     "detections": 4,
+     "modis": 0,
+     "viirs": 4,
+     "frp_mw": 17.7,
+     "wind_from_deg": 123,
+     "wind_alignment": 0.93,
+     "precip_mm": 11.3,
+     "dry_days": 0,
+     "index": 1.86,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-13": {
+     "cells": 10,
+     "modis_only": 1,
+     "viirs_only": 8,
+     "both": 1,
+     "detections": 19,
+     "modis": 3,
+     "viirs": 16,
+     "frp_mw": 165.2,
+     "wind_from_deg": 69,
+     "wind_alignment": 0.85,
+     "precip_mm": 8.9,
+     "dry_days": 0,
+     "index": 4.24,
+     "aligned": true,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-14": {
+     "cells": 7,
+     "modis_only": 0,
+     "viirs_only": 7,
+     "both": 0,
+     "detections": 15,
+     "modis": 0,
+     "viirs": 15,
+     "frp_mw": 208.0,
+     "wind_from_deg": 272,
+     "wind_alignment": 0.0,
+     "precip_mm": 8.0,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-15": {
+     "cells": 0,
+     "modis_only": 0,
+     "viirs_only": 0,
+     "both": 0,
+     "detections": 0,
+     "modis": 0,
+     "viirs": 0,
+     "frp_mw": 0,
+     "wind_from_deg": 75,
+     "wind_alignment": 0.9,
+     "precip_mm": 21.0,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    }
+   }
+  },
+  "central-kalimantan": {
+   "name": "Central Kalimantan",
+   "group": "Kalimantan",
+   "centroid_lat_lon": [
+    -1.597,
+    113.429
+   ],
+   "distance_to_singapore_km": 1118,
+   "bearing_to_singapore_deg": 287,
+   "cell_days": 169,
+   "detections_nominal_high": 463,
+   "aligned_days": 5,
+   "frp_total_mw": 4624.5,
+   "by_date": {
+    "2026-11-08": {
+     "cells": 25,
+     "modis_only": 0,
+     "viirs_only": 25,
+     "both": 0,
+     "detections": 172,
+     "modis": 0,
+     "viirs": 172,
+     "frp_mw": 1942.5,
+     "wind_from_deg": 97,
+     "wind_alignment": 0.98,
+     "precip_mm": 11.1,
+     "dry_days": 0,
+     "index": 12.31,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-09": {
+     "cells": 19,
+     "modis_only": 2,
+     "viirs_only": 17,
+     "both": 0,
+     "detections": 75,
+     "modis": 5,
+     "viirs": 70,
+     "frp_mw": 501.3,
+     "wind_from_deg": 51,
+     "wind_alignment": 0.55,
+     "precip_mm": 17.8,
+     "dry_days": 0,
+     "index": 5.26,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-10": {
+     "cells": 22,
+     "modis_only": 1,
+     "viirs_only": 20,
+     "both": 1,
+     "detections": 37,
+     "modis": 2,
+     "viirs": 35,
+     "frp_mw": 297.0,
+     "wind_from_deg": 271,
+     "wind_alignment": 0.0,
+     "precip_mm": 14.7,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-11": {
+     "cells": 26,
+     "modis_only": 0,
+     "viirs_only": 26,
+     "both": 0,
+     "detections": 38,
+     "modis": 0,
+     "viirs": 38,
+     "frp_mw": 423.6,
+     "wind_from_deg": 58,
+     "wind_alignment": 0.66,
+     "precip_mm": 12.2,
+     "dry_days": 0,
+     "index": 8.61,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-12": {
+     "cells": 20,
+     "modis_only": 3,
+     "viirs_only": 15,
+     "both": 2,
+     "detections": 37,
+     "modis": 7,
+     "viirs": 30,
+     "frp_mw": 277.3,
+     "wind_from_deg": 101,
+     "wind_alignment": 0.99,
+     "precip_mm": 12.4,
+     "dry_days": 0,
+     "index": 9.94,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-13": {
+     "cells": 18,
+     "modis_only": 1,
+     "viirs_only": 17,
+     "both": 0,
+     "detections": 35,
+     "modis": 1,
+     "viirs": 34,
+     "frp_mw": 487.9,
+     "wind_from_deg": 114,
+     "wind_alignment": 0.99,
+     "precip_mm": 3.4,
+     "dry_days": 0,
+     "index": 8.93,
+     "aligned": true,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-14": {
+     "cells": 35,
+     "modis_only": 2,
+     "viirs_only": 32,
+     "both": 1,
+     "detections": 63,
+     "modis": 3,
+     "viirs": 60,
+     "frp_mw": 686.3,
+     "wind_from_deg": 254,
+     "wind_alignment": 0.0,
+     "precip_mm": 8.5,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-15": {
+     "cells": 4,
+     "modis_only": 0,
+     "viirs_only": 4,
+     "both": 0,
+     "detections": 6,
+     "modis": 0,
+     "viirs": 6,
+     "frp_mw": 8.6,
+     "wind_from_deg": 338,
+     "wind_alignment": 0.0,
+     "precip_mm": 24.6,
+     "dry_days": 0,
+     "index": 0.0,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    }
+   }
+  },
+  "south-kalimantan": {
+   "name": "South Kalimantan",
+   "group": "Kalimantan",
+   "centroid_lat_lon": [
+    -2.933,
+    115.385
+   ],
+   "distance_to_singapore_km": 1371,
+   "bearing_to_singapore_deg": 290,
+   "cell_days": 188,
+   "detections_nominal_high": 449,
+   "aligned_days": 7,
+   "frp_total_mw": 2070.0,
+   "by_date": {
+    "2026-11-08": {
+     "cells": 28,
+     "modis_only": 0,
+     "viirs_only": 28,
+     "both": 0,
+     "detections": 59,
+     "modis": 0,
+     "viirs": 59,
+     "frp_mw": 404.5,
+     "wind_from_deg": 88,
+     "wind_alignment": 0.93,
+     "precip_mm": 6.1,
+     "dry_days": 0,
+     "index": 12.99,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-09": {
+     "cells": 28,
+     "modis_only": 0,
+     "viirs_only": 27,
+     "both": 1,
+     "detections": 85,
+     "modis": 2,
+     "viirs": 83,
+     "frp_mw": 302.1,
+     "wind_from_deg": 99,
+     "wind_alignment": 0.98,
+     "precip_mm": 6.3,
+     "dry_days": 0,
+     "index": 13.73,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-10": {
+     "cells": 16,
+     "modis_only": 1,
+     "viirs_only": 15,
+     "both": 0,
+     "detections": 26,
+     "modis": 1,
+     "viirs": 25,
+     "frp_mw": 255.5,
+     "wind_from_deg": 63,
+     "wind_alignment": 0.69,
+     "precip_mm": 6.5,
+     "dry_days": 0,
+     "index": 5.49,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-11": {
+     "cells": 32,
+     "modis_only": 0,
+     "viirs_only": 32,
+     "both": 0,
+     "detections": 74,
+     "modis": 0,
+     "viirs": 74,
+     "frp_mw": 467.1,
+     "wind_from_deg": 87,
+     "wind_alignment": 0.92,
+     "precip_mm": 4.8,
+     "dry_days": 0,
+     "index": 14.72,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-12": {
+     "cells": 21,
+     "modis_only": 3,
+     "viirs_only": 15,
+     "both": 3,
+     "detections": 48,
+     "modis": 8,
+     "viirs": 40,
+     "frp_mw": 146.9,
+     "wind_from_deg": 121,
+     "wind_alignment": 0.98,
+     "precip_mm": 4.8,
+     "dry_days": 0,
+     "index": 10.29,
+     "aligned": true,
+     "weather_source": "NASA POWER"
+    },
+    "2026-11-13": {
+     "cells": 19,
+     "modis_only": 0,
+     "viirs_only": 17,
+     "both": 2,
+     "detections": 57,
+     "modis": 2,
+     "viirs": 55,
+     "frp_mw": 192.4,
+     "wind_from_deg": 117,
+     "wind_alignment": 0.99,
+     "precip_mm": 7.0,
+     "dry_days": 0,
+     "index": 9.43,
+     "aligned": true,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-14": {
+     "cells": 32,
+     "modis_only": 1,
+     "viirs_only": 31,
+     "both": 0,
+     "detections": 58,
+     "modis": 1,
+     "viirs": 57,
+     "frp_mw": 227.9,
+     "wind_from_deg": 110,
+     "wind_alignment": 1.0,
+     "precip_mm": 9.0,
+     "dry_days": 0,
+     "index": 16.0,
+     "aligned": true,
+     "weather_source": "Open-Meteo"
+    },
+    "2026-11-15": {
+     "cells": 12,
+     "modis_only": 0,
+     "viirs_only": 12,
+     "both": 0,
+     "detections": 42,
+     "modis": 0,
+     "viirs": 42,
+     "frp_mw": 73.6,
+     "wind_from_deg": 45,
+     "wind_alignment": 0.42,
+     "precip_mm": 11.3,
+     "dry_days": 0,
+     "index": 2.54,
+     "aligned": false,
+     "weather_source": "Open-Meteo"
+    }
+   }
+  }
+ },
+ "focus_rows_all_confidence": {
+  "rows": 1581,
+  "frp_total_mw": 11532.0,
+  "frp_median_mw": 4.46,
+  "frp_max_mw": 135.88
+ },
+ "top_province": "South Sumatra",
+ "top_province_cell_days": 275,
+ "aligned_days_total": 20,
+ "province_days_total": 48,
+ "province_days_with_weather": 48,
+ "example_province": "Riau",
+ "example_days_away": 5,
+ "weather_source": "NASA POWER + Open-Meteo",
+ "weather": {
+  "fetched_utc": "2026-11-15T07:41:50+00:00",
+  "nasa_power_dates": [
+   "2026-11-08",
+   "2026-11-09",
+   "2026-11-10",
+   "2026-11-11",
+   "2026-11-12"
+  ],
+  "open_meteo_gap_fill_dates": [
+   "2026-11-13",
+   "2026-11-14",
+   "2026-11-15"
+  ],
+  "requests": {
+   "riau": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=101.748&latitude=0.455&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=0.455&longitude=101.748&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "jambi": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=102.752&latitude=-1.693&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-1.693&longitude=102.752&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "south-sumatra": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=104.187&latitude=-3.231&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-3.231&longitude=104.187&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "west-kalimantan": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=111.168&latitude=-0.086&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-0.086&longitude=111.168&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "central-kalimantan": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=113.429&latitude=-1.597&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-1.597&longitude=113.429&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "south-kalimantan": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=115.385&latitude=-2.933&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-2.933&longitude=115.385&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   }
+  }
+ },
+ "step0_checks": {
+  "viirs_snpp_feed_empty": true,
+  "viirs_noaa20_feed_populated": true,
+  "viirs_noaa21_feed_populated": true,
+  "nasa_power_returns_wd10m_ws10m_prectotcorr": true,
+  "nasa_power_latest_date": "2026-11-12",
+  "nasa_power_missing_dates_in_window": [
+   "2026-11-13",
+   "2026-11-14",
+   "2026-11-15"
+  ],
+  "open_meteo_fallback_used": true,
+  "province_polygons": "Natural Earth 10m admin-1, 6 provinces (data/provinces.geojson)"
+ }
+}

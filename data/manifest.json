@@ -1,0 +1,106 @@
+{
+ "feeds": {
+  "modis": {
+   "http_status": 200,
+   "bytes": 151236,
+   "fetched_utc": "2026-11-15T07:41:42+00:00",
+   "rows": 1961,
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_SouthEast_Asia_7d.csv",
+   "file": "data/raw/MODIS_C6_1_SouthEast_Asia_7d.csv",
+   "path": "data/raw/MODIS_C6_1_SouthEast_Asia_7d.csv"
+  },
+  "viirs_snpp": {
+   "http_status": 200,
+   "bytes": 112,
+   "fetched_utc": "2026-11-15T07:41:43+00:00",
+   "rows": 0,
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "file": "data/raw/SUOMI_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "path": "data/raw/SUOMI_VIIRS_C2_SouthEast_Asia_7d.csv"
+  },
+  "viirs_noaa20": {
+   "http_status": 200,
+   "bytes": 1087739,
+   "fetched_utc": "2026-11-15T07:41:46+00:00",
+   "rows": 12961,
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "file": "data/raw/J1_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "path": "data/raw/J1_VIIRS_C2_SouthEast_Asia_7d.csv"
+  },
+  "viirs_noaa21": {
+   "http_status": 200,
+   "bytes": 1141499,
+   "fetched_utc": "2026-11-15T07:41:49+00:00",
+   "rows": 13601,
+   "url": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "file": "data/raw/J2_VIIRS_C2_SouthEast_Asia_7d.csv",
+   "path": "data/raw/J2_VIIRS_C2_SouthEast_Asia_7d.csv"
+  }
+ },
+ "weather": {
+  "fetched_utc": "2026-11-15T07:41:50+00:00",
+  "file": "data/raw/weather.json",
+  "requests": {
+   "riau": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=101.748&latitude=0.455&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=0.455&longitude=101.748&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "jambi": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=102.752&latitude=-1.693&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-1.693&longitude=102.752&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "south-sumatra": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=104.187&latitude=-3.231&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-3.231&longitude=104.187&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "west-kalimantan": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=111.168&latitude=-0.086&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-0.086&longitude=111.168&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "central-kalimantan": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=113.429&latitude=-1.597&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-1.597&longitude=113.429&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   },
+   "south-kalimantan": {
+    "power": {
+     "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WD10M,WS10M,PRECTOTCORR&community=RE&longitude=115.385&latitude=-2.933&start=20261101&end=20261115&format=JSON",
+     "http_status": 200
+    },
+    "open_meteo": {
+     "url": "https://api.open-meteo.com/v1/forecast?latitude=-2.933&longitude=115.385&daily=wind_direction_10m_dominant,wind_speed_10m_max,precipitation_sum&start_date=2026-11-01&end_date=2026-11-15&timezone=Asia%2FJakarta&wind_speed_unit=ms",
+     "http_status": 200
+    }
+   }
+  }
+ }
+}

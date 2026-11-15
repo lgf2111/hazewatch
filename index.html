@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HazeWatch — whose fires become Singapore's smoke?</title>
+<meta name="description" content="A burning calendar from NASA FIRMS MODIS and VIIRS hot spots for the Sumatra and Kalimantan provinces that matter to Singapore's haze.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>HazeWatch</h1>
+    <p class="tag">Whose fires become Singapore's smoke?</p>
+  </div>
+  <p class="stamp" id="stamp">Loading snapshot…</p>
+  <ul class="chips" id="chips" aria-label="Feed status"></ul>
+  <p class="limits-bar" id="limits-bar"></p>
+</header>
+
+<nav class="tabs" aria-label="Views">
+  <a href="?view=calendar" data-view="calendar">Calendar</a>
+  <a href="?view=map" data-view="map">Map</a>
+  <a href="?view=wind" data-view="wind">Wind windows</a>
+  <a href="?view=data" data-view="data">Data &amp; limits</a>
+</nav>
+
+<main>
+  <section id="view-calendar" class="view" hidden>
+    <div class="view-head">
+      <h2>Burning calendar</h2>
+      <p class="lede" id="cal-lede"></p>
+    </div>
+    <div class="controls">
+      <label for="cal-sensor">Count cells seen by</label>
+      <select id="cal-sensor">
+        <option value="all">MODIS or VIIRS (harmonised)</option>
+        <option value="modis">MODIS only</option>
+        <option value="viirs">VIIRS only</option>
+      </select>
+    </div>
+    <div class="table-wrap"><table class="cal" id="cal"></table></div>
+    <div class="legend" id="cal-legend"></div>
+    <p class="note" id="cal-note"></p>
+    <div class="empty-state">
+      <h3>12-month calendar</h3>
+      <p><strong>Archive not loaded in this prototype.</strong> Month-by-month and year-on-year comparison needs the FIRMS archive (MODIS from 2000, VIIRS from 2012). The pipeline is designed for it; no archive data is shown here and none is simulated.</p>
+    </div>
+  </section>
+
+  <section id="view-map" class="view" hidden>
+    <div class="view-head">
+      <h2>Hot spots near Singapore</h2>
+      <p class="lede" id="map-lede"></p>
+    </div>
+    <div class="controls">
+      <div class="seg" id="map-mode" role="group" aria-label="Show">
+        <button type="button" data-mode="points" class="on">Raw detections</button>
+        <button type="button" data-mode="cells">Harmonised 0.1° cells</button>
+      </div>
+      <label for="map-day" class="sr">Day</label>
+      <select id="map-day"></select>
+    </div>
+    <div id="map"></div>
+    <div class="legend" id="map-legend"></div>
+    <p class="note">Basemap: NASA GIBS, Blue Marble Shaded Relief and Bathymetry. Outlines: Natural Earth admin-1. Points and cells: NASA FIRMS, nominal- and high-confidence only.</p>
+  </section>
+
+  <section id="view-wind" class="view" hidden>
+    <div class="view-head">
+      <h2>Wind windows</h2>
+      <p class="lede" id="wind-lede"></p>
+    </div>
+    <div class="pchips" id="wind-provs" role="group" aria-label="Province"></div>
+    <p class="geo" id="wind-geo"></p>
+    <div class="table-wrap"><table class="wind" id="wind"></table></div>
+    <p class="note" id="wind-note"></p>
+    <div class="callout">
+      <strong>Heuristic, not a forecast.</strong> Index = burning cells × wind alignment × (0.5 + 0.5 × dry spell ÷ 5). A day is “aligned” when at least one cell is burning and the wind blows within 60° of the line to Singapore. The thresholds are chosen, not fitted, and nothing here has been checked against air-quality readings. Surface wind at one point per province is not the wind that carries smoke.
+    </div>
+  </section>
+
+  <section id="view-data" class="view" hidden>
+    <div class="view-head">
+      <h2>Data &amp; limits</h2>
+      <p class="lede">What was fetched, what was missing, and how two sensors became one count.</p>
+    </div>
+    <div class="missing" id="missing"></div>
+    <h3>Feeds</h3>
+    <div class="table-wrap"><table class="plain" id="feeds"></table></div>
+    <h3>What harmonising changes</h3>
+    <div class="tiles" id="tiles"></div>
+    <p class="note" id="harm-note"></p>
+    <div class="prov-bar" id="prov-bar"></div>
+    <h3>Confidence mapping</h3>
+    <div class="table-wrap"><table class="plain" id="conf"></table></div>
+    <h3>Schema mapping</h3>
+    <div class="table-wrap"><table class="plain" id="schema"></table></div>
+    <h3>Limits</h3>
+    <ul class="limits" id="limits"></ul>
+    <p class="note">Every number on this site is in <a href="data/facts.json">data/facts.json</a>; the unmodified NASA files are in <a href="https://github.com/lgf2111/hazewatch/tree/main/data/raw">data/raw</a>; the pipeline is <a href="https://github.com/lgf2111/hazewatch/blob/main/tools/build_snapshot.py">tools/build_snapshot.py</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Fire data: NASA FIRMS (MODIS C6.1, VIIRS C2 NRT). Imagery: NASA GIBS. Weather: NASA POWER, gaps filled by Open-Meteo. Boundaries: Natural Earth. Built for NASA Space Apps Challenge 2026, Singapore. Not affiliated with NASA. <a href="https://github.com/lgf2111/hazewatch">Source</a></p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
