@@ -233,7 +233,7 @@ slides.append(f"""
 <section class="slide s7">
   <h1>Can See Or Not?</h1>
   <p class="link">{APP}</p>
-  <p class="body">Today is calm. PSI {psi_now["low"]} to {psi_now["high"]}. The record has to exist for the mornings it isn't.</p>
+  <p class="body">On 15 November it was calm. PSI {psi_now["low"]} to {psi_now["high"]}. The record has to exist for the mornings it isn't.</p>
   <p class="ask">Next: an agency pilot, or archive funding.</p>
   <p class="note">{PSI}</p>
   <p class="team">Team <b>\u201c{TEAM}\u201d</b> \u00b7 {MEMBER}<br>Singapore Local Event \u00b7 {CHALLENGE} \u00b7 Best Use of Data</p>
