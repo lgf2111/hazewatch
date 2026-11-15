@@ -48,6 +48,11 @@
     VIEWS.forEach((x) => { $("view-" + x).hidden = x !== v; });
     document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("on", a.dataset.view === v));
     if (push) history.pushState(null, "", "?view=" + v + (v === "wind" ? "&p=" + prov : ""));
+    if ($("oneweek")) $("oneweek").textContent = v === "2015" ? "One month of archive. Not a forecast." : "One week of data. Not a forecast.";
+    if (S && S.meta) {
+      if (v === "2015") $("stamp").innerHTML = "NASA FIRMS archive · September 2015 · fetched " + esc(S.meta.fetched_sgt);
+      else renderHeader();
+    }
     if (v === "map") renderMap();
     if (v === "2015") renderArchive();
     const on = document.querySelector(".tabs a.on");
@@ -245,13 +250,13 @@
     const second = dates.filter((d) => d !== peak).reduce((a, d) => (T[d] > T[a] ? d : a), dates.find((d) => d !== peak));
     const lead = Math.round((new Date(closure) - new Date(peak)) / 864e5);
     $("arc-lede").innerHTML = "<b>In " + MONTH[+peak.slice(5, 7) - 1] + " " + peak.slice(0, 4) + " the fires peaked on " + longDay(peak) + ", " + (WORDS[lead] || lead) +
-      " days before every primary and secondary school in Singapore closed.</b> The morning of the closure was already quiet: " + fmt(T[closure]) +
+      " days before every primary and secondary school in Singapore closed.</b> On the day of the closure the count had fallen to " + fmt(T[closure]) +
       " squares, against " + fmt(T[peak]) + " on the " + ordinal(dayNum(peak)) + ".";
     $("arc-honest").textContent = second !== closure
       ? longDay(second) + " burned almost as much, " + fmt(T[second]) + " squares, and no school closed. Fire counts alone do not explain smoke." : "";
     const w = ARC.params.window, rows = ARC.rows_fetched;
     $("arc-small").textContent = "NASA FIRMS archive, MODIS and VIIRS on one " + ARC.params.cell_deg + " degree grid, " + dayNum(w[0]) + " to " + longDay(w[1]) + " " + w[1].slice(0, 4) +
-      ". " + fmt(rows.MODIS_SP) + " MODIS rows and " + fmt(rows.VIIRS_SNPP_SP) + " VIIRS rows, fetched with a FIRMS MAP_KEY held in the environment. PSI " + cl.psi_24h_peak +
+      " over Riau, Jambi, South Sumatra, West Kalimantan, Central Kalimantan and South Kalimantan. " + fmt(rows.MODIS_SP) + " MODIS rows and " + fmt(rows.VIIRS_SNPP_SP) + " VIIRS rows, fetched with a FIRMS MAP_KEY held in the environment. PSI " + cl.psi_24h_peak +
       " is Singapore's 24-hour reading at " + cl.psi_24h_peak_time + " on " + longDay(closure) + " " + closure.slice(0, 4) + " (NEA).";
     $("arc-body").hidden = false;
     drawArchiveChart();
@@ -267,7 +272,7 @@
     const est = (t) => t.length * 7.6;
     let s = "<svg width='" + W + "' height='" + H + "' viewBox='0 0 " + W + " " + H + "' role='img' aria-label='Burning squares per day across the six provinces, " +
       esc(longDay(dates[0]) + " to " + longDay(dates[dates.length - 1])) + " " + dates[0].slice(0, 4) + ". Peak " + esc(longDay(peak)) + ", " + fmt(T[peak]) + ". School closure " + esc(longDay(cl)) + ", " + fmt(T[cl]) + ".'>";
-    s += "<text x='" + L + "' y='15' font-size='12' fill='#6a645b'>Burning squares a day, six provinces</text>";
+    s += "<text x='" + L + "' y='15' font-size='12' fill='#6a645b'>Burning squares a day</text>";
     for (let g = 0; g <= ymax; g += 500) {
       s += "<line x1='" + L + "' x2='" + (W - R) + "' y1='" + y(g).toFixed(1) + "' y2='" + y(g).toFixed(1) + "' stroke='#ddd6c8'/>" +
         "<text x='" + (L - 6) + "' y='" + (y(g) + 4).toFixed(1) + "' text-anchor='end' font-size='12' fill='#6a645b'>" + fmt(g) + "</text>";
@@ -281,7 +286,7 @@
     });
     const cx = (d) => L + dates.indexOf(d) * bw + bw / 2;
     const clamp = (c, t) => Math.min(W - 4 - est(t) / 2, Math.max(4 + est(t) / 2, c));
-    const pt = shortDay(peak) + " · " + fmt(T[peak]), ct = shortDay(cl) + " · " + fmt(T[cl]);
+    const pt = shortDay(peak) + " · " + fmt(T[peak]), ct = shortDay(cl) + " · " + fmt(T[cl]) + " · schools closed";
     // narrow: end the peak label at the peak bar so the closure leader line (further right) never crosses it
     s += "<text x='" + (narrow ? cx(peak) + bw * 0.45 : clamp(cx(peak), pt)).toFixed(1) + "' y='" + (y(T[peak]) - 8).toFixed(1) + "' text-anchor='" + (narrow ? "end" : "middle") + "' font-size='13' font-weight='800' fill='#8f2410'>" + esc(pt) + "</text>";
     const cy = narrow ? 44 : y(ymax * 0.7);  // narrow: its own row above the peak label so the two never touch
