@@ -25,14 +25,8 @@ h1, h2, h3, p { margin: 0; }
 .brand h1 { font-size: 20px; letter-spacing: -0.01em; }
 .brand h1::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--ember); margin-right: 7px; }
 .tag { color: var(--muted); font-size: 13px; }
-.stamp { margin-top: 6px; font-size: 12px; font-variant-numeric: tabular-nums; }
-.stamp b { font-weight: 600; }
-.chips { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
-.chips li { font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.chips li b { font-weight: 650; }
-.chips li .r { display: none; }
-.chips li.empty { background: var(--warn-bg); border-color: var(--warn-line); }
-.limits-bar { margin-top: 8px; font-size: 12px; padding: 5px 8px; background: var(--warn-bg); border-left: 3px solid var(--warn-line); }
+.stamp { margin-top: 4px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stamp b { font-weight: 600; color: var(--ink); }
 
 .tabs { display: flex; gap: 2px; padding: 0 10px; background: var(--card); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 1000; overflow-x: auto; }
 .tabs a { padding: 10px 9px; font-size: 14px; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; }
@@ -71,19 +65,12 @@ table { border-collapse: collapse; width: 100%; }
 .c .w { position: absolute; left: 4px; right: 4px; bottom: 3px; height: 4px; border-radius: 2px; }
 .c .w.al { background: var(--teal); box-shadow: 0 0 0 1px #fff; }
 .c .w.nw { background: repeating-linear-gradient(45deg, #9a9488 0 2px, transparent 2px 4px); }
-.cal tr.else .c { height: 30px; font-size: 12px; background: transparent; color: var(--muted); font-weight: 500; }
-.cal tr.else th.name { cursor: default; font-weight: 500; color: var(--muted); }
 
 .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 12px; color: var(--muted); align-items: center; }
 .legend span { display: inline-flex; align-items: center; gap: 5px; }
 .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; }
 .legend i.bar { height: 4px; width: 18px; background: var(--teal); }
 .legend i.dot { border-radius: 50%; width: 10px; height: 10px; border: 1px solid rgba(0,0,0,.4); }
-
-.empty-state { margin-top: 22px; padding: 14px; border: 1.5px dashed var(--line); border-radius: 8px; }
-.empty-state h3 { margin: 0 0 4px; }
-.empty-state p { font-size: 13px; color: var(--muted); }
-.empty-state strong { color: var(--ink); }
 
 /* map */
 #map { height: 46vh; min-height: 320px; border: 1px solid var(--line); border-radius: 8px; background: #0b2a4a; }
@@ -109,42 +96,20 @@ table { border-collapse: collapse; width: 100%; }
 .wind td.na { color: var(--muted); }
 .wind svg { display: block; margin: 0 auto 1px; }
 .wind .fire { font-weight: 700; font-size: 15px; }
-.callout { margin-top: 14px; padding: 10px 12px; background: var(--warn-bg); border-left: 3px solid var(--warn-line); font-size: 13px; }
 
-/* data */
-.missing { display: grid; gap: 8px; margin-top: 12px; }
-.missing div { padding: 10px 12px; background: var(--warn-bg); border-left: 3px solid var(--warn-line); font-size: 13px; }
-.missing b { display: block; font-size: 14px; }
-.plain th, .plain td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; font-variant-numeric: tabular-nums; }
-.plain th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
-.plain td.num { text-align: right; padding-right: 14px; white-space: nowrap; }
-.plain th.num { text-align: right; padding-right: 14px; }
-.plain td small { display: block; color: var(--muted); word-break: break-all; }
-.plain tr.empty td { background: var(--warn-bg); }
-.plain code { font-size: 12px; }
-.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.tiles div { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
-.tiles b { display: block; font-size: 24px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.tiles span { font-size: 12px; color: var(--muted); display: block; line-height: 1.3; }
-.prov-bar { margin-top: 12px; }
-.prov-bar .bar { display: flex; height: 22px; border-radius: 4px; overflow: hidden; }
-.prov-bar .bar i { display: block; }
-.limits { margin: 0; padding-left: 18px; font-size: 13.5px; }
-.limits li { margin-bottom: 5px; }
+/* about */
+.about p { max-width: 62ch; margin-top: 12px; }
+.about .view-head + p { margin-top: 14px; }
+.oneweek { margin-top: 22px; font-size: 12.5px; color: var(--muted); }
 
 footer { max-width: 1120px; margin: 0 auto; padding: 14px 16px 30px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
 
 @media (min-width: 760px) {
   body { font-size: 16px; }
-  .top { padding: 14px 28px 12px; display: grid; grid-template-columns: auto 1fr; column-gap: 28px; align-items: center; }
-  .brand { grid-row: 1 / span 2; display: block; }
+  .top { padding: 14px 28px 12px; }
   .brand h1 { font-size: 26px; }
-  .stamp { margin-top: 0; font-size: 13px; }
-  .chips { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .chips li { font-size: 13px; }
-  .chips li .r { display: inline; }
+  .stamp { font-size: 13px; }
   #map { height: min(62vh, 560px); }
-  .limits-bar { grid-column: 1 / -1; font-size: 13px; }
   .tabs { padding: 0 22px; }
   .tabs a { padding: 11px 14px; font-size: 15px; }
   main { padding: 20px 28px 32px; }
@@ -157,8 +122,5 @@ footer { max-width: 1120px; margin: 0 auto; padding: 14px 16px 30px; border-top:
   .wind th.rl { width: 170px; font-size: 14px; } .wind th.rl small { font-size: 12px; }
   .wind th, .wind td { font-size: 15px; padding: 9px 2px; }
   .wind td small { font-size: 12px; }
-  .missing { grid-template-columns: repeat(3, 1fr); }
-  .tiles b { font-size: 34px; } .tiles span { font-size: 13px; }
-  .tiles div { padding: 14px 16px; }
   footer { padding: 16px 28px 36px; }
 }
