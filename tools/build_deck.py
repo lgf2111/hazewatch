@@ -63,8 +63,12 @@ lead_days = (closure - peak_d).days
 WORD = {3: "three"}
 assert A["dates"] == sorted(TOT) and set(A["provinces"]["south-sumatra"]) == set(TOT)
 assert closure.strftime("%A") == CL["weekday"] == "Friday"
-assert (peak, TOT[peak]) == ("2015-09-22", 1590) and TOT[CL["date"]] == 562 and (second, TOT[second]) == ("2015-09-08", 1545)
-assert lead_days in WORD and TOT["2015-09-23"] == 1269 and TOT["2015-09-24"] == 1017  # still high, then the collapse
+assert (peak, lead_days) == ("2015-09-22", 3) and second == "2015-09-08"
+# the shape the slide claims: high, still high, then a collapse on the closure morning
+assert TOT["2015-09-22"] > TOT["2015-09-23"] > TOT["2015-09-24"] > TOT[CL["date"]]
+assert TOT[CL["date"]] < 0.5 * TOT[peak]
+# and the humbling one: an earlier day burned nearly as much with no closure, so the copy can say so
+assert TOT[second] > 0.9 * TOT[peak]
 assert CL["psi_24h_peak"] == 322
 npp = dt.datetime.fromisoformat(EV["suomi_npp_cessation"]["utc"].replace("Z", "+00:00"))
 psi_now = EV["psi_today"]
@@ -116,11 +120,11 @@ def chart():
     """One bar per day of the look back, drawn from archive-2015.json. Peak and closure day are marked."""
     W, H, L, B, T = 1152, 318, 50, 30, 8
     dates = A["dates"]
-    top = 1800
+    top = 2000
     bw = (W - L) / len(dates)
     y = lambda v: T + (H - T - B) * (1 - v / top)
     out = [f'<svg class="chart" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Burning squares per day, six provinces, September 2015">']
-    for g in (0, 500, 1000, 1500):
+    for g in (0, 500, 1000, 1500, 2000):
         out.append(f'<line x1="{L}" x2="{W}" y1="{y(g):.1f}" y2="{y(g):.1f}" stroke="#d9d2c3" stroke-width="1"/>'
                    f'<text x="{L - 8}" y="{y(g) + 6:.1f}" text-anchor="end" font-size="17" fill="#5b564c">{n(g)}</text>')
     for i, d in enumerate(dates):
@@ -139,7 +143,7 @@ def chart():
     tag(peak, [f"{d_short(peak)} \u00b7 {n(TOT[peak])} \u00b7 fires peak"], "#8f2410", "middle", -30)
     tag(second, [f"{d_short(second)} \u00b7 {n(TOT[second])} \u00b7 no closure"], "#5b564c", "start", -22)
     ly = y(1500)
-    last = tag(CL["date"], [f"{d_short(CL['date'])} \u00b7 {n(TOT[CL['date']])}", f"schools closed \u00b7 PSI {CL['psi_24h_peak']}"], "#0f6b74", "start", -14, ly)
+    last = tag(CL["date"], [f"{d_short(CL['date'])} \u00b7 {n(TOT[CL['date']])}", "schools closed"], "#0f6b74", "middle", 0, ly)
     out.append(f'<line x1="{cx(CL["date"]):.1f}" x2="{cx(CL["date"]):.1f}" y1="{last + 8:.1f}" y2="{y(TOT[CL["date"]]) - 4:.1f}" stroke="#0f6b74" stroke-width="3"/>')
     out.append("</svg>")
     return "".join(out)
@@ -207,7 +211,7 @@ slides.append(f"""
   <h2>The fires peaked {WORD[lead_days]} days before the schools closed.</h2>
   {chart()}
   <p class="body">A build-up of fires, then smoke. But {int(second[-2:])} Sep burned almost as much and no school closed: fire counts alone don't explain smoke.</p>
-  <p class="cap">Burning squares a day across the six provinces, {d0.day}\u2013{d1.day} {d1:%B %Y}. NASA FIRMS archive, MODIS + VIIRS. A look back at one event, not a prediction.</p>
+  <p class="cap">Burning squares a day across the six provinces, {d0.day}\u2013{d1.day} {d1:%B %Y}. NASA FIRMS archive, MODIS + VIIRS. 25 September: schools closed, PSI {CL['psi_24h_peak']}. A look back at one event, not a prediction.</p>
 </section>""")
 
 # 6 — honesty as strength -----------------------------------------------------

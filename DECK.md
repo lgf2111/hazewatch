@@ -52,11 +52,11 @@ Image: the burning calendar (`desktop-calendar`) with the app's own colour key. 
 ## 5 — The look back
 
 > ## The fires peaked three days before the schools closed.
-> *Bar chart, one bar per day, 5–30 September 2015, burning squares across the six provinces.* Marked: **22 Sep · 1,590 · fires peak**; **8 Sep · 1,545 · no closure**; **25 Sep · 562 · schools closed · PSI 322**.
+> *Bar chart, one bar per day, 1–30 September 2015, burning squares across the six provinces.* Marked: **22 Sep · 1,579 · fires peak**; **8 Sep · 1,520 · no closure**; **25 Sep · 555 · schools closed** (PSI 322 in the caption).
 > A build-up of fires, then smoke. But 8 Sep burned almost as much and no school closed: fire counts alone don't explain smoke.
 > Small: Burning squares a day across the six provinces, 5–30 September 2015. NASA FIRMS archive, MODIS + VIIRS. A look back at one event, not a prediction.
 
-Numbers: `data/archive-2015.json` (`six_province_total`; 23 Sep 1,269, 24 Sep 1,017 are the days still high after the peak). The build asserts peak = 22 Sep (1,590), closure day = 562, second-highest = 8 Sep (1,545), peak to closure = 3 days. The chart is SVG drawn from the JSON, not a screenshot.
+Numbers: `data/archive-2015.json` (`six_province_total`; 23 Sep 1,243, 24 Sep 1,004 are the days still high after the peak). The build asserts peak = 22 Sep (1,579), closure day below half the peak, and second-highest = 8 Sep (1,520), peak to closure = 3 days. The chart is SVG drawn from the JSON, not a screenshot.
 
 Honest reading, as the slide carries it: a build-up in the three days before the closure, consistent with smoke arriving after the fires and **not** with fires on the day; and 8 September shows fire alone does not explain PSI. Chart covers 5–30 September: the backtest supplied no figures for 1–4 September, so none are drawn.
 
