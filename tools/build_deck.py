@@ -45,9 +45,9 @@ assert F["modis_rows"] + F["noaa20_rows"] + F["noaa21_rows"] == F["total_rows"]
 TEAM = "Can See Or Not"
 MEMBER = "Lee Guan Feng"
 CHALLENGE = "Harmonization of MODIS and VIIRS Hot Spots"
-APP = "lgf2111.github.io/hazewatch"
+APP = "leeguanfeng.com/hazewatch"
 
-FIRMS = "NASA FIRMS MODIS C6.1 + VIIRS C2 NRT active fire"
+FIRMS = "NASA FIRMS MODIS C6.1&nbsp;+&nbsp;VIIRS C2 NRT active fire"
 
 
 def shot(name, x, y, w, h, width):
@@ -71,15 +71,15 @@ slides = []
 slides.append(f"""
 <section class="slide s1">
   <div class="col">
-    <p class="kicker">NASA Space Apps Challenge 2026 · Singapore Local Event</p>
+    <p class="kicker">NASA Space Apps Challenge 2026<br>Singapore Local Event</p>
     <h1>HazeWatch</h1>
     <h2>Whose fires become Singapore's smoke?</h2>
     <p class="stat"><b>{total}</b></p>
     <p class="body">NASA fire detections. One week. Four files.</p>
-    <p class="team">Team <b>“{TEAM}”</b> · {MEMBER}<br>{CHALLENGE} · Best Use of Data</p>
+    <p class="team">Team <b>“{TEAM}”</b> · {MEMBER}<br>{CHALLENGE}<br>Award target: Best Use of Data</p>
   </div>
-  <figure>{shot("desktop-map-raw.png", 188, 300, 1064, 556, 580)}
-    {cap(f"Live app, map view · {FIRMS} · basemap NASA GIBS")}</figure>
+  <figure>{shot("desktop-map-raw.png", 236, 306, 1010, 528, 580)}
+    {cap(f"Live app, map view · {FIRMS} · Basemap NASA GIBS")}</figure>
 </section>""")
 
 # 2 — problem -----------------------------------------------------------------
@@ -109,9 +109,9 @@ slides.append(f"""
     <p class="body">Count burning cells, not dots. Only <b>{overlap}%</b> of MODIS cells are also seen by VIIRS.</p>
   </div>
   <div class="pair">
-    <figure>{shot("desktop-map-raw.png", 188, 300, 1064, 556, 560)}
+    <figure>{shot("desktop-map-raw.png", 236, 306, 1010, 528, 560)}
       {cap(f"Raw detections · {FIRMS}")}</figure>
-    <figure>{shot("desktop-map-cells.png", 188, 300, 1064, 556, 560)}
+    <figure>{shot("desktop-map-cells.png", 236, 306, 1010, 528, 560)}
       {cap(f"Harmonised 0.1° cells · {FIRMS}")}</figure>
   </div>
 </section>""")
@@ -124,7 +124,7 @@ slides.append(f"""
     <p class="stat"><b>{top_cells}</b></p>
     <p class="body">burning cell-days in {top_name}, the most active. Six provinces: <b>{focus}</b> of <b>{active}</b>.</p>
   </div>
-  <figure>{shot("desktop-calendar.png", 180, 185, 1080, 625, 690)}
+  <figure>{shot("desktop-calendar.png", 184, 315, 1072, 437, 690)}
     {cap(f"Live app, burning calendar · {FIRMS}, harmonised to 0.1° cell-days")}</figure>
 </section>""")
 
@@ -136,8 +136,8 @@ slides.append(f"""
     <p class="stat"><b>{aligned} of {pdays}</b></p>
     <p class="body">province-days: fire burning, wind within 60° of Singapore.</p>
   </div>
-  <figure>{shot("desktop-wind.png", 180, 180, 1080, 640, 690)}
-    {cap("Live app, wind windows (South Sumatra) · NASA FIRMS MODIS + VIIRS · NASA POWER WD10M, WS10M, PRECTOTCORR · † Open-Meteo")}</figure>
+  <figure>{shot("desktop-wind.png", 188, 298, 1064, 517, 690)}
+    {cap("Live app, wind windows (South Sumatra) · NASA FIRMS MODIS&nbsp;+&nbsp;VIIRS<br>NASA POWER WD10M, WS10M, PRECTOTCORR · † Open-Meteo")}</figure>
 </section>""")
 
 # 6 — real vs missing ---------------------------------------------------------
@@ -194,6 +194,7 @@ h2{font-size:48px;line-height:1.1;letter-spacing:-.5px}
 h3{font-size:36px;line-height:1.1}
 .stat{font-size:96px;line-height:1;color:var(--fire);font-weight:800;letter-spacing:-2px}
 .body,.body li{font-size:32px;line-height:1.25}
+h1,h2,h3,.body,.kicker,.team,.cap{text-wrap:balance}
 .kicker{font-size:22px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute)}
 .team{font-size:22px;line-height:1.4;color:var(--mute)}
 .team b{color:var(--ink)}
